@@ -1,13 +1,15 @@
+// chatbot.mjs
+
 exports.handler = async (event) => {
   try {
     // Parse the incoming request body
     const body = JSON.parse(event.body || "{}");
     const userQuestion = body.question || "No question provided";
 
-    // Access your OpenAI API key from environment variables
-    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    // Access your Hugging Face API key from environment variables
+    const HF_API_KEY = process.env.HUGGINGFACE_API_KEY;
 
-    if (!OPENAI_API_KEY) {
+    if (!HF_API_KEY) {
       return {
         statusCode: 500,
         headers: {
@@ -15,28 +17,37 @@ exports.handler = async (event) => {
           "Access-Control-Allow-Headers": "Content-Type",
         },
         body: JSON.stringify({
-          error: "OpenAI API key is missing in environment variables.",
+          error: "Hugging Face API key is missing in environment variables.",
         }),
       };
     }
 
-    // Call the OpenAI API with GPT-4
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo", // change models here. 4 access not offered with plus
-        messages: [{ role: "user", content: userQuestion }],
-      }),
-    });
+    // Call the Hugging Face Inference API
+    // Using microsoft/DialoGPT-small as an example:
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/microsoft/DialoGPT-small",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${HF_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          inputs: userQuestion,
+        }),
+      }
+    );
 
-    // Parse the response from OpenAI
+    // Parse the response from Hugging Face
     const data = await response.json();
-    console.log("OpenAI raw data:", data);
-    const answer = data?.choices?.[0]?.message?.content || "No response";
+    console.log("Hugging Face raw data:", data);
+
+    // For DialoGPT, the response typically looks like: [{ "generated_text": "..." }]
+    // So let's safely extract generated_text:
+    let answer = "No response";
+    if (Array.isArray(data) && data.length > 0 && data[0].generated_text) {
+      answer = data[0].generated_text;
+    }
 
     return {
       statusCode: 200,

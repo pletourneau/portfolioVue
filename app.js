@@ -1,9 +1,14 @@
+// app.js
 const { createApp } = Vue;
 
 createApp({
   data() {
     return {
       currentSection: "home",
+      // Added chatbot-related data:
+      userQuestion: "",
+      chatbotResponse: "",
+
       services: [
         {
           title: "WordPress Design & Development",
@@ -73,5 +78,29 @@ createApp({
         },
       ],
     };
+  },
+  methods: {
+    // Added method to call our Netlify function for Hugging Face
+    async askChatbot() {
+      try {
+        const response = await fetch("/.netlify/functions/chatbot", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: this.userQuestion }),
+        });
+
+        const data = await response.json();
+        if (data.answer) {
+          this.chatbotResponse = data.answer;
+        } else {
+          this.chatbotResponse = data.error || "No response from chatbot.";
+        }
+      } catch (error) {
+        console.error("Error calling chatbot:", error);
+        this.chatbotResponse = "Error calling chatbot.";
+      }
+    },
   },
 }).mount("#app");
