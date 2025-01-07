@@ -83,13 +83,16 @@ createApp({
     // Added method to call our Netlify function for Hugging Face
     async askChatbot() {
       try {
-        const response = await fetch("/.netlify/functions/chatbot", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ question: this.userQuestion }),
-        });
+        const response = await fetch(
+          "https://paulportpretty.netlify.app/.netlify/functions/chatbot",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ question: this.userQuestion }),
+          }
+        );
 
         const data = await response.json();
         if (data.answer) {
