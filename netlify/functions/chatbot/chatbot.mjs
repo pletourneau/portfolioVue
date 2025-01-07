@@ -8,6 +8,7 @@ exports.handler = async (event) => {
 
     // Access your Hugging Face API key from environment variables
     const HF_API_KEY = process.env.HUGGINGFACE_API_KEY;
+    console.log("ENV HUGGINGFACE_API_KEY: ", process.env.HUGGINGFACE_API_KEY);
 
     if (!HF_API_KEY) {
       return {
@@ -34,6 +35,7 @@ exports.handler = async (event) => {
         },
         body: JSON.stringify({
           inputs: userQuestion,
+          options: { wait_for_model: true },
         }),
       }
     );
@@ -41,6 +43,7 @@ exports.handler = async (event) => {
     // Parse the response from Hugging Face
     const data = await response.json();
     console.log("Hugging Face raw data:", data);
+    console.log("HTTP Status:", response.status);
 
     // For DialoGPT, the response typically looks like: [{ "generated_text": "..." }]
     // So let's safely extract generated_text:
