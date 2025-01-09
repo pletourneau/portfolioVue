@@ -1,3 +1,4 @@
+// app.js
 const { createApp } = Vue;
 
 createApp({
@@ -56,19 +57,11 @@ createApp({
           repoLink: "#",
         },
       ],
-      isDarkMode: false,
       isNavbarScrolled: false,
+      isMobileMenuOpen: false,
     };
   },
   methods: {
-    toggleDarkMode() {
-      this.isDarkMode = !this.isDarkMode;
-      if (this.isDarkMode) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    },
     handleScroll() {
       if (window.scrollY > 50) {
         this.isNavbarScrolled = true;
@@ -76,17 +69,13 @@ createApp({
         this.isNavbarScrolled = false;
       }
     },
+    closeMobileMenu() {
+      this.isMobileMenuOpen = false;
+    },
   },
   mounted() {
+    console.log("App mounted");
     window.addEventListener("scroll", this.handleScroll);
-    // Initialize dark mode based on user's preference or system settings
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      this.isDarkMode = true;
-      document.documentElement.classList.add("dark");
-    }
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
