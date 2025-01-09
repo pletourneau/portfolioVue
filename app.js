@@ -1,14 +1,9 @@
-// app.js
 const { createApp } = Vue;
 
 createApp({
   data() {
     return {
       currentSection: "home",
-      // Added chatbot-related data:
-      userQuestion: "",
-      chatbotResponse: "",
-
       services: [
         {
           title: "WordPress Design & Development",
@@ -42,14 +37,6 @@ createApp({
             "Iterative improvements based on metrics",
           ],
         },
-        {
-          title: "Managed Chatbots & AI Solutions",
-          bulletPoints: [
-            "Installation & configuration of chatbots",
-            "AI chatbot development with GPT-based APIs",
-            "Monitoring & performance optimization",
-          ],
-        },
       ],
       projects: [
         {
@@ -68,42 +55,10 @@ createApp({
           liveLink: "#",
           repoLink: "#",
         },
-        {
-          title: "AI Chatbot Demo",
-          image: "assets/images/chatbot-demo.png",
-          description:
-            "Proof of concept chatbot built using GPT for lead generation.",
-          liveLink: "#",
-          repoLink: "#",
-        },
       ],
     };
   },
   methods: {
-    // Added method to call our Netlify function for Hugging Face
-    async askChatbot() {
-      try {
-        const response = await fetch(
-          "https://paulportpretty.netlify.app/.netlify/functions/chatbot",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ question: this.userQuestion }),
-          }
-        );
-
-        const data = await response.json();
-        if (data.answer) {
-          this.chatbotResponse = data.answer;
-        } else {
-          this.chatbotResponse = data.error || "No response from chatbot.";
-        }
-      } catch (error) {
-        console.error("Error calling chatbot:", error);
-        this.chatbotResponse = "Error calling chatbot.";
-      }
-    },
+    // Removed chatbot-related methods
   },
 }).mount("#app");

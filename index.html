@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -202,35 +203,6 @@
             >Paul LeTourneau</a
           >
         </p>
-      </section>
-
-      <!-- CHATBOT DEMO SECTION -->
-      <section class="p-6 md:p-12 bg-gray-100 min-h-screen">
-        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
-          Chatbot Demo
-        </h2>
-        <div class="max-w-xl mx-auto">
-          <label for="question" class="block mb-2 font-semibold"
-            >Ask a question:</label
-          >
-          <input
-            id="question"
-            type="text"
-            v-model="userQuestion"
-            class="border rounded p-2 w-full mb-4"
-            placeholder="Type your question..."
-          />
-          <button
-            @click="askChatbot"
-            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Send
-          </button>
-          <div class="mt-4">
-            <h3 class="font-bold">Response:</h3>
-            <p class="mt-1 whitespace-pre-line">{{ chatbotResponse }}</p>
-          </div>
-        </div>
       </section>
 
       <!-- FOOTER -->
