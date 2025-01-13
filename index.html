@@ -36,6 +36,28 @@
         padding-top: 4rem;
       }
       
+      #home {
+        background-image: url('assets/images/koi.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      
+      #home .content-box {
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        padding: 2rem;
+        border-radius: 0.5rem; /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      }
+
+      #contact {
+        background-image: url('assets/images/koi.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      
+
       /* Optional: Customize scrollbar for better aesthetics */
       /* Example:
       ::-webkit-scrollbar {
@@ -182,22 +204,26 @@
   
       <!-- HOME SECTION -->
       <section
-        id="home"
-        v-if="currentSection === 'home'"
-        class="flex flex-col items-center justify-center text-center p-6 md:p-12 bg-gray-100 min-h-screen"
-      >
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I’m Paul</h1>
-        <p class="text-xl md:text-2xl text-gray-700 mb-6">
-          Junior Developer with a background in sales, marketing, and UX.
-          Seeking opportunities to blend technical and human-centered solutions.
-        </p>
-        <button
-          @click="currentSection = 'about'"
-          class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
-        >
-          Learn More
-        </button>
-      </section>
+  id="home"
+  v-if="currentSection === 'home'"
+  class="flex items-center justify-center text-center p-6 md:p-12 bg-gray-100 min-h-screen"
+>
+  <!-- Content Box -->
+  <div
+    class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
+  >
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Hi, I’m Paul</h1>
+    <p class="text-lg md:text-xl text-gray-700 mb-6">
+      Junior Developer with a background in sales, marketing, and UX.
+    </p>
+    <button
+      @click="currentSection = 'about'"
+      class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
+    >
+      Learn More
+    </button>
+  </div>
+</section>
   
       <!-- ABOUT SECTION -->
       <section
@@ -303,104 +329,70 @@
   
       <!-- CONTACT SECTION -->
       <section
-        id="contact"
-        v-if="currentSection === 'contact'"
-        class="p-6 md:p-12 bg-gray-100 text-center min-h-screen"
+  id="contact"
+  v-if="currentSection === 'contact'"
+  class="flex items-center justify-center text-center p-6 md:p-12 bg-gray-100 min-h-screen"
+>
+  <!-- Content Box -->
+  <div
+    class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
+  >
+    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Contact</h2>
+    <p class="text-lg text-gray-700 mb-4">
+      <strong>Phone:</strong> 651.207.7388
+    </p>
+    <p class="text-lg text-gray-700 mb-6">
+      <strong>Email:</strong>
+      <a
+        href="mailto:thepaulletourneau@gmail.com"
+        class="text-blue-600 hover:text-blue-800 transition-colors"
+        >thepaulletourneau@gmail.com</a
       >
-        <h2 class="text-2xl md:text-3xl font-bold mb-6">Contact</h2>
-        <p class="text-gray-700">
-          <strong>Phone:</strong> 651.207.7388
-        </p>
-        <p class="text-gray-700">
-          <strong>Email:</strong>
-          <a
-            href="mailto:thepaulletourneau@gmail.com"
-            class="text-blue-600 hover:text-blue-800 transition-colors"
-            >thepaulletourneau@gmail.com</a
-          >
-        </p>
-        <div class="mt-4 flex justify-center space-x-6">
-          <a
-            href="https://linkedin.com/in/paulcletourneau"
-            target="_blank"
-            class="text-blue-600 hover:text-blue-800 transition-colors"
-            aria-label="LinkedIn"
-          >
-            <!-- LinkedIn SVG Icon -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M19 0h-14c-2.761 0-5 2.239-5 
-                5v14c0 2.761 2.239 5 5 5h14c2.761 
-                0 5-2.239 
-                5-5v-14c0-2.761-2.239-5-5-5zm-11 
-                19h-3v-10h3v10zm-1.5-11.268c-.966 
-                0-1.75-.784-1.75-1.75s.784-1.75 
-                1.75-1.75 1.75.784 
-                1.75 1.75-.784 
-                1.75-1.75 1.75zm13.5 
-                11.268h-3v-5.604c0-1.337-.027-3.063-1.866-3.063-1.867 
-                0-2.152 1.459-2.152 2.967v5.703h-3v-10h2.881v1.367h.041c.401-.762 
-                1.381-1.566 2.843-1.566 3.046 
-                0 3.607 2.006 3.607 
-                4.617v5.592z"
-              />
-            </svg>
-          </a>
-          <a
-            href="https://github.com/pletourneau"
-            target="_blank"
-            class="text-blue-600 hover:text-blue-800 transition-colors"
-            aria-label="GitHub"
-          >
-            <!-- GitHub SVG Icon -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 .297c-6.63 
-                0-12 5.373-12 12 0 5.303 
-                3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
-                0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729 
-                1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93 
-                0-1.31.47-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 
-                0 0 1.005-.322 
-                3.3 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.045.138 
-                3.003.404 2.28-1.552 3.285-1.23 
-                3.285-1.23.645 1.653.24 2.873.12 
-                3.176.765.84 1.23 1.91 1.23 
-                3.22 0 4.61-2.805 5.625-5.475 
-                5.92.42.36.81 1.096.81 2.22 
-                0 1.606-.015 2.896-.015 3.286 
-                0 .315.21.69.825.57C20.565 
-                22.092 24 17.592 24 
-                12.297c0-6.627-5.373-12-12-12zm0 
-                22c-1.104 
-                0-2-.896-2-2s.896-2 2-2 2 .896 
-                2 2-.896 2-2 2zm6-6.406c-.773 0-1.4.627-1.4 
-                1.4s.627 1.4 1.4 1.4 1.4-.627 
-                1.4-1.4-.627-1.4-1.4-1.4zm-3.6-10.188l-.6 
-                2.4h-1.8l.6-2.4h1.8zm4.8 
-                10.188c-.773 0-1.4.627-1.4 
-                1.4s.627 1.4 1.4 1.4 1.4-.627 
-                1.4-1.4-.627-1.4-1.4-1.4zm0 
-                0"
-              />
-            </svg>
-          </a>
-        </div>
-        <p class="text-gray-600">
-          © {{ new Date().getFullYear() }} Paul LeTourneau | Seattle, WA
-        </p>
-      </footer>
+    </p>
+    <div class="flex justify-center space-x-6">
+      <a
+        href="https://linkedin.com/in/paulcletourneau"
+        target="_blank"
+        class="text-blue-600 hover:text-blue-800 transition-colors"
+        aria-label="LinkedIn"
+      >
+        <!-- LinkedIn SVG Icon -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.063-1.866-3.063-1.867 0-2.152 1.459-2.152 2.967v5.703h-3v-10h2.881v1.367h.041c.401-.762 1.381-1.566 2.843-1.566 3.046 0 3.607 2.006 3.607 4.617v5.592z"
+          />
+        </svg>
+      </a>
+      <a
+        href="https://github.com/pletourneau"
+        target="_blank"
+        class="text-blue-600 hover:text-blue-800 transition-colors"
+        aria-label="GitHub"
+      >
+        <!-- GitHub SVG Icon -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.045.138 3.003.404 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12zm0 22c-1.104 0-2-.896-2-2s.896-2 2-2 2 .896 2 2-.896 2-2 2zm6-6.406c-.773 0-1.4.627-1.4 1.4s.627 1.4 1.4 1.4 1.4-.627 1.4-1.4-.627-1.4-1.4-1.4zm-3.6-10.188l-.6 2.4h-1.8l.6-2.4h1.8zm4.8 10.188c-.773 0-1.4.627-1.4 1.4s.627 1.4 1.4 1.4 1.4-.627 1.4-1.4-.627-1.4-1.4-1.4zm0 0"
+          />
+        </svg>
+      </a>
     </div>
+    <p class="text-gray-600 mt-6">
+      © {{ new Date().getFullYear() }} Paul LeTourneau | Seattle, WA
+    </p>
+  </div>
+</section>
+
   
     <!-- AOS JS for animations -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
