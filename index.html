@@ -26,30 +26,17 @@
       /* Custom Styles */
       body {
         font-family: "Inter", sans-serif;
-        margin: 0;
-        background-color: white;
+      }
+      /* Adjust body padding when navbar is fixed */
+      body.pt-16 {
+        padding-top: 4rem;
       }
 
       #home {
-        position: relative;
-        height: 100vh; /* Full viewport height */
         background-image: url("assets/images/koi.jpeg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        overflow: hidden; /* Ensures no unintended overflow */
-      }
-
-      #home .content-box {
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.8
-        ); /* Semi-transparent background */
-        padding: 2rem;
-        border-radius: 0.5rem; /* Rounded corners */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
       }
 
       #contact {
@@ -58,10 +45,21 @@
         background-position: center;
         background-repeat: no-repeat;
       }
+
+      /* Optional: Customize scrollbar for better aesthetics */
+      /* Example:
+      ::-webkit-scrollbar {
+          width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+          background-color: rgba(0, 0, 0, 0.2);
+          border-radius: 4px;
+        }
+      */
     </style>
   </head>
 
-  <body class="font-sans text-gray-800 pt-16">
+  <body class="font-sans bg-white text-gray-800 pt-16">
     <!-- Main Vue App -->
     <div id="app">
       <!-- NAVBAR -->
@@ -190,23 +188,27 @@
       </header>
 
       <!-- HOME SECTION -->
-      <section id="home" class="relative text-center">
-        <div class="relative flex items-center justify-center h-full">
-          <div
-            class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
+      <section
+        id="home"
+        v-if="currentSection === 'home'"
+        class="flex items-center justify-center text-center p-6 md:p-12 bg-gray-100 min-h-screen"
+      >
+        <!-- Content Box -->
+        <div
+          class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
+        >
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            Hi, I’m Paul
+          </h1>
+          <p class="text-lg md:text-xl text-gray-700 mb-6">
+            Junior Developer with a background in sales, marketing, and UX.
+          </p>
+          <button
+            @click="currentSection = 'about'"
+            class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
           >
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-              Hi, I’m Paul
-            </h1>
-            <p class="text-lg md:text-xl text-gray-700 mb-6">
-              A Developer with a background in sales, marketing, and UX.
-            </p>
-            <button
-              class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
-            >
-              Learn More
-            </button>
-          </div>
+            Learn More
+          </button>
         </div>
       </section>
 
@@ -220,9 +222,9 @@
           About Me
         </h2>
         <p class="text-gray-700 text-base md:text-lg leading-relaxed">
-          Based in Seattle, WA, I am a junior developer passionate about
-          creating user-focused web solutions and helping brands tell their
-          stories in the digital and physical spaces.
+          Based in Seattle, WA, I am a junior developer transitioning from sales
+          and marketing with a passion for creating user-centric and efficient
+          web solutions.
         </p>
         <div class="mt-6">
           <h3 class="text-xl font-semibold">Education:</h3>
@@ -318,6 +320,7 @@
         v-if="currentSection === 'contact'"
         class="flex items-center justify-center text-center p-6 md:p-12 bg-gray-100 min-h-screen"
       >
+        <!-- Content Box -->
         <div
           class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
         >
@@ -374,7 +377,7 @@
             </a>
           </div>
           <p class="text-gray-600 mt-6">
-            © {{ new Date().getFullYear() }} Paul LeTourneau | Seattle, WA
+            © {{ currentYear }} Paul LeTourneau | Seattle, WA
           </p>
         </div>
       </section>

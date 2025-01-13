@@ -59,10 +59,12 @@ createApp({
       ],
       isNavbarScrolled: false,
       isMobileMenuOpen: false,
+      currentYear: new Date().getFullYear(),
     };
   },
   methods: {
     handleScroll() {
+      console.log("Handling scroll");
       if (window.scrollY > 50) {
         this.isNavbarScrolled = true;
       } else {
@@ -70,6 +72,7 @@ createApp({
       }
     },
     closeMobileMenu() {
+      console.log("Closing mobile menu");
       this.isMobileMenuOpen = false;
     },
   },
