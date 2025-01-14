@@ -64,7 +64,7 @@ createApp({
   },
   methods: {
     handleScroll() {
-      console.log("Handling scroll");
+      // Handle navbar shadow
       if (window.scrollY > 50) {
         this.isNavbarScrolled = true;
       } else {
@@ -72,15 +72,30 @@ createApp({
       }
     },
     closeMobileMenu() {
-      console.log("Closing mobile menu");
       this.isMobileMenuOpen = false;
+    },
+    debounce(func, wait = 20, immediate = true) {
+      let timeout;
+      return function () {
+        const context = this,
+          args = arguments;
+        const later = function () {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
     },
   },
   mounted() {
-    console.log("App mounted");
-    window.addEventListener("scroll", this.handleScroll);
+    // Debounce the scroll handler for performance
+    window.addEventListener("scroll", this.debounce(this.handleScroll, 20));
+    this.handleScroll(); // Initialize on mount
   },
   beforeUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("scroll", this.debounce(this.handleScroll, 20));
   },
 }).mount("#app");
