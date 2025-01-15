@@ -54,7 +54,7 @@
           100% 0%,
           100% 100%,
           0% 100%
-        ); /*For Safari */
+        ); /* For Safari */
 
         z-index: 0; /* Place behind the content */
         /* No transition needed for static clip-path */
@@ -97,24 +97,66 @@
         z-index: 1;
       }
 
+      /* PROJECTS SECTION */
+      #portfolio {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(to right, #4265a1, #dae4f5);
+      }
+
+      #portfolio > div {
+        position: relative;
+        z-index: 1;
+      }
+
       /* CONTACT SECTION */
       #contact {
-        background-image: url("assets/images/koi.jpeg");
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(to right, #4265a1, #dae4f5);
+      }
+
+      /* Pseudo-Element for Background Image with Clip-Path */
+      #contact::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("assets/images/reachOut.jpeg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+        -webkit-clip-path: polygon(
+          20% 0%,
+          80% 0%,
+          100% 100%,
+          0% 100%
+        ); /* For Safari */
+        z-index: 0;
       }
 
-      /* Optional: Customize scrollbar for better aesthetics */
-      /* Example:
-      ::-webkit-scrollbar {
-          width: 8px;
-        }
-        ::-webkit-scrollbar-thumb {
-          background-color: rgba(0, 0, 0, 0.2);
-          border-radius: 4px;
-        }
-      */
+      #contact > div {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Fade Transition */
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.3s ease;
+      }
+      .fade-enter-from,
+      .fade-leave-to {
+        opacity: 0;
+      }
+
+      /* Accordion Arrow Rotation */
+      .rotate-180 {
+        transform: rotate(180deg);
+      }
     </style>
   </head>
 
@@ -161,7 +203,7 @@
                 href="#portfolio"
                 class="hover:text-blue-600 transition-colors"
                 @click.prevent="currentSection = 'portfolio'; closeMobileMenu()"
-                >Portfolio</a
+                >Projects</a
               >
             </li>
             <li>
@@ -231,7 +273,7 @@
                 href="#portfolio"
                 class="block hover:text-blue-600 transition-colors"
                 @click.prevent="currentSection = 'portfolio'; closeMobileMenu()"
-                >Portfolio</a
+                >Projects</a
               >
             </li>
             <li>
@@ -341,41 +383,111 @@
       <section
         id="portfolio"
         v-if="currentSection === 'portfolio'"
-        class="px-6 md:px-12 bg-white min-h-screen"
+        class="px-6 md:px-12 bg-gradient-to-r from-[#4265a1] to-[#dae4f5] min-h-screen relative overflow-hidden pt-20"
       >
-        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
-          Portfolio & Projects
-        </h2>
-        <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <div
-            v-for="(project, index) in projects"
-            :key="index"
-            class="bg-gray-100 shadow-md rounded-lg p-6 transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-            data-aos="fade-up"
-          >
-            <img
-              :src="project.image"
-              :alt="project.title"
-              class="rounded-md mb-4 w-full h-48 object-cover shadow-sm"
-              loading="lazy"
-            />
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">
-              {{ project.title }}
-            </h3>
-            <p class="text-gray-600">{{ project.description }}</p>
-            <div class="mt-4 flex space-x-4">
-              <a
-                :href="project.liveLink"
-                target="_blank"
-                class="text-blue-600 hover:text-blue-800 transition-colors"
-                >Live Demo</a
+        <!-- Content Container -->
+        <div class="relative z-10 flex flex-col items-center">
+          <!-- Heading Box -->
+          <div class="bg-white bg-opacity-80 p-4 rounded-md mb-8">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-center text-gray-900"
+            >
+              Projects
+            </h2>
+          </div>
+
+          <!-- Projects Content Container -->
+          <div class="w-full max-w-6xl mx-auto space-y-6">
+            <div
+              v-for="(project, index) in projects"
+              :key="index"
+              class="bg-gray-100 shadow-md rounded-lg p-4 transition-all duration-300"
+              data-aos="fade-up"
+            >
+              <div
+                @click="toggleAccordion(index)"
+                class="cursor-pointer flex items-center justify-between"
               >
-              <a
-                :href="project.repoLink"
-                target="_blank"
-                class="text-blue-600 hover:text-blue-800 transition-colors"
-                >GitHub</a
-              >
+                <div class="flex items-center">
+                  <img
+                    :src="project.image"
+                    :alt="project.title"
+                    class="rounded-md w-24 h-24 object-cover shadow-sm mr-4"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h3 class="text-xl font-semibold text-gray-800">
+                      {{ project.title }}
+                    </h3>
+                    <p class="text-gray-600">{{ project.shortDescription }}</p>
+                  </div>
+                </div>
+                <svg
+                  :class="{'transform rotate-180': project.open}"
+                  class="h-6 w-6 text-gray-600 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </div>
+
+              <!-- Accordion Content -->
+              <transition name="fade">
+                <div v-if="project.open" class="mt-4">
+                  <div class="flex flex-col lg:flex-row lg:space-x-6">
+                    <div class="lg:w-1/2">
+                      <h4 class="text-lg font-semibold">Structure</h4>
+                      <p class="text-gray-700 mb-4">{{ project.structure }}</p>
+
+                      <h4 class="text-lg font-semibold">Description</h4>
+                      <p
+                        class="text-gray-700 mb-4"
+                        v-html="project.longDescription"
+                      ></p>
+
+                      <h4 class="text-lg font-semibold">Repositories</h4>
+                      <div class="ml-4 space-y-2">
+                        <a
+                          v-for="(repo, repoIndex) in project.repoLinks"
+                          :key="repoIndex"
+                          :href="repo.url"
+                          target="_blank"
+                          class="text-blue-600 hover:text-blue-800 transition-colors block"
+                        >
+                          {{ repo.name }}
+                        </a>
+                      </div>
+
+                      <h4 class="text-lg font-semibold">Live Demo</h4>
+                      <div class="ml-4">
+                        <a
+                          :href="project.liveLink"
+                          target="_blank"
+                          class="text-blue-600 hover:text-blue-800 transition-colors block"
+                        >
+                          View Live Demo
+                        </a>
+                      </div>
+                    </div>
+                    <div class="lg:w-1/2 mt-4 lg:mt-0">
+                      <img
+                        :src="project.previewImage"
+                        :alt="project.title + ' preview'"
+                        class="rounded-md w-full h-auto object-cover shadow-sm"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </transition>
             </div>
           </div>
         </div>
@@ -385,14 +497,14 @@
       <section
         id="contact"
         v-if="currentSection === 'contact'"
-        class="flex items-center justify-center text-center px-6 md:px-12 bg-gray-100 min-h-screen"
+        class="flex items-center justify-center text-center px-6 md:px-12 bg-gradient-to-r from-[#4265a1] to-[#dae4f5] min-h-screen pt-20"
       >
         <!-- Content Box -->
         <div
           class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
         >
           <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
-            Contact
+            Reach Out
           </h2>
           <p class="text-lg text-gray-700 mb-4">
             <strong>Phone:</strong> 651.207.7388

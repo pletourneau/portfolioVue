@@ -41,20 +41,77 @@ createApp({
       ],
       projects: [
         {
+          title: "Quixx",
+          image: "assets/images/quixxScreenshot.jpg",
+          shortDescription: "Online game",
+          structure: "Made with a MERN stack",
+          longDescription: `
+            <p>This is a placeholder for the long description of the Quixx project. It includes details about the project's objectives, features, and the development process.</p>
+            <ul>
+              <li>Implemented user authentication and real-time gameplay.</li>
+              <li>Designed responsive UI for seamless experience across devices.</li>
+              <li>Optimized performance to handle multiple concurrent users.</li>
+            </ul>
+          `,
+          previewImage: "assets/images/quixxScreenshot.jpg",
+          liveLink: "https://verdant-otter-7da637.netlify.app/",
+          repoLinks: [
+            {
+              name: "Frontend",
+              url: "https://github.com/pletourneau/quixxFront",
+            },
+            {
+              name: "Backend",
+              url: "https://github.com/pletourneau/quixxBack",
+            },
+          ],
+          open: false,
+        },
+        {
           title: "WordPress Volunteer Project",
           image: "assets/images/wordpress-project.png",
-          description:
-            "A WordPress site built for MN350 featuring custom theme updates.",
+          shortDescription: "WordPress site development",
+          structure: "Built using WordPress and custom PHP",
+          longDescription: `
+            <p>This is a placeholder for the long description of the WordPress Volunteer Project. It covers the project's goals, implementation strategies, and outcomes.</p>
+            <ul>
+              <li>Customized themes to match the client's branding.</li>
+              <li>Integrated essential plugins for enhanced functionality.</li>
+              <li>Ensured SEO optimization and mobile responsiveness.</li>
+            </ul>
+          `,
+          previewImage: "assets/images/wordpress-preview.png", // Placeholder image
           liveLink: "#",
-          repoLink: "#",
+          repoLinks: [
+            {
+              name: "Repository",
+              url: "https://github.com/pletourneau/wordpressVolunteer",
+            },
+          ],
+          open: false,
         },
         {
           title: "UX Redesign Case Study",
           image: "assets/images/ux-case-study.png",
-          description:
-            "User research and a redesigned interface for a non-profit registration flow.",
+          shortDescription: "UX redesign for non-profit",
+          structure: "Conducted user research and prototyping",
+          longDescription: `
+            <p>This is a placeholder for the long description of the UX Redesign Case Study. It highlights the research methods, design decisions, and the impact of the redesign.</p>
+            <ul>
+              <li>Performed user interviews to gather insights.</li>
+              <li>Created wireframes and prototypes using Figma.</li>
+              <li>Enhanced accessibility and user experience across the platform.</li>
+            </ul>
+          `,
+          previewImage: "assets/images/ux-preview.png", // Placeholder image
           liveLink: "#",
-          repoLink: "#",
+          repoLinks: [
+            {
+              name: "Repository",
+              url: "https://github.com/pletourneau/uxRedesign",
+            },
+          ],
+          open: false,
         },
       ],
       isNavbarScrolled: false,
@@ -73,6 +130,15 @@ createApp({
     },
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
+    },
+    toggleAccordion(index) {
+      this.projects.forEach((project, i) => {
+        if (i === index) {
+          project.open = !project.open;
+        } else {
+          project.open = false;
+        }
+      });
     },
     debounce(func, wait = 20, immediate = true) {
       let timeout;
