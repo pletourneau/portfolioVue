@@ -48,7 +48,12 @@ createApp({
           longDescription: `
             <p>Quixx is a real-time multiplayer online game that offers an engaging and interactive experience. Utilizing Vue.js for the frontend and Node.js/Express for the backend with WebSockets, Quixx ensures seamless gameplay and instant updates. Hosted on Netlify and Render, it demonstrates full-stack development capabilities and real-time communication.</p>
           `,
-          previewImage: "assets/images/quixxScreenshot.jpg",
+          previewImages: [
+            "assets/images/quixxScreenshot1.jpg",
+            "assets/images/quixxScreenshot2.jpg",
+            "assets/images/quixxScreenshot3.jpg",
+          ],
+          currentImageIndex: 0,
           liveLink: "https://verdant-otter-7da637.netlify.app/",
           repoLinks: [
             {
@@ -63,27 +68,26 @@ createApp({
           open: false,
         },
         {
-          title: "WordPress Volunteer Project",
-          image: "assets/images/wordpress-project.png",
-          shortDescription: "WordPress site development",
-          structure: "Built using WordPress and custom PHP",
+          title: "Custom WordPress Page/Theme",
+          image: "assets/images/MDpreview.webp",
+          shortDescription:
+            "Custom WordPress theme development for client migration from Squarespace",
+          structure: "Developed a custom child theme using WordPress and PHP",
           longDescription: `
-            <p>Developed a customized WordPress site for a volunteer organization, enhancing their online presence with tailored themes and essential plugins. Ensured SEO optimization and mobile responsiveness to reach a broader audience.</p>
+            <p>Developed a custom child theme for a client transitioning from Squarespace to WordPress. Replicated the Squarespace design and translated it into the WordPress environment, ensuring consistency in style and functionality. Managed the migration of hosting and domain, and implemented a mobile-first responsive design to enhance user experience across all devices.</p>
           `,
-          previewImage: "assets/images/wordpress-preview.png",
-          liveLink: "#",
-          repoLinks: [
-            {
-              name: "Repository",
-              url: "https://github.com/pletourneau/wordpressVolunteer",
-            },
+          previewImages: [
+            "assets/images/MDResponsive.webp",
+            "assets/images/MDpreview.webp",
           ],
+          currentImageIndex: 0,
+          liveLink: "https://www.meganedoherty.com/",
           open: false,
         },
         {
           title:
             "Website Performance Optimization for GIVE International Volunteers",
-          image: "assets/images/give-international-volunteers-screenshot.jpg",
+          image: "assets/images/GIVE.jpg",
           shortDescription:
             "Optimized a WordPress website to significantly reduce load times and enhance user engagement.",
           structure: "WordPress with custom JavaScript optimizations",
@@ -101,28 +105,37 @@ createApp({
               <strong>Result:</strong> Successfully reduced average load times from 5 seconds to under 2 seconds, increased page views by 25%, boosted user engagement by 20%, and decreased mobile bounce rates by 15%.
             </p>
           `,
-          previewImage:
-            "assets/images/give-international-volunteers-preview.jpg",
-          open: false,
-        },
-        {
-          title: "UX Redesign Case Study",
-          image: "assets/images/ux-case-study.png",
-          shortDescription: "UX redesign for non-profit",
-          structure: "Conducted user research and prototyping",
-          longDescription: `
-            <p>Led a UX redesign for a non-profit organization, conducting user interviews and usability testing. Created wireframes and prototypes using Figma, resulting in enhanced accessibility and user experience across their platform.</p>
-          `,
-          previewImage: "assets/images/ux-preview.png",
-          liveLink: "#",
-          repoLinks: [
-            {
-              name: "Repository",
-              url: "https://github.com/pletourneau/uxRedesign",
-            },
+          previewImages: [
+            "assets/images/GIVE.jpg",
+            // "assets/images/give-international-volunteers-preview2.jpg",
           ],
+          currentImageIndex: 0,
+          // liveLink and repoLinks are omitted as per your earlier request
           open: false,
         },
+        // {
+        //   title: "UX Redesign Case Study",
+        //   image: "assets/images/ux-case-study.png",
+        //   shortDescription: "UX redesign for non-profit",
+        //   structure: "Conducted user research and prototyping",
+        //   longDescription: `
+        //     <p>Led a UX redesign for a non-profit organization, conducting user interviews and usability testing. Created wireframes and prototypes using Figma, resulting in enhanced accessibility and user experience across their platform.</p>
+        //   `,
+        //   previewImages: [
+        //     "assets/images/ux-preview1.png",
+        //     "assets/images/ux-preview2.png",
+        //     "assets/images/ux-preview3.png",
+        //   ],
+        //   currentImageIndex: 0,
+        //   liveLink: "#",
+        //   repoLinks: [
+        //     {
+        //       name: "Repository",
+        //       url: "https://github.com/pletourneau/uxRedesign",
+        //     },
+        //   ],
+        //   open: false,
+        // },
       ],
       isNavbarScrolled: false,
       isMobileMenuOpen: false,
@@ -156,6 +169,23 @@ createApp({
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
       };
+    },
+    // New Methods for Image Navigation
+    prevImage(project) {
+      if (project.currentImageIndex > 0) {
+        project.currentImageIndex--;
+      } else {
+        // If at the first image, loop to the last image
+        project.currentImageIndex = project.previewImages.length - 1;
+      }
+    },
+    nextImage(project) {
+      if (project.currentImageIndex < project.previewImages.length - 1) {
+        project.currentImageIndex++;
+      } else {
+        // If at the last image, loop back to the first image
+        project.currentImageIndex = 0;
+      }
     },
   },
   mounted() {
