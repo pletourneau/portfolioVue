@@ -453,28 +453,34 @@
                         v-html="project.longDescription"
                       ></p>
 
-                      <h4 class="text-lg font-semibold">Repositories</h4>
-                      <div class="ml-4 space-y-2">
-                        <a
-                          v-for="(repo, repoIndex) in project.repoLinks"
-                          :key="repoIndex"
-                          :href="repo.url"
-                          target="_blank"
-                          class="text-blue-600 hover:text-blue-800 transition-colors block"
-                        >
-                          {{ repo.name }}
-                        </a>
+                      <!-- Repositories Section (Conditionally Rendered) -->
+                      <div v-if="project.repoLinks && project.repoLinks.length">
+                        <h4 class="text-lg font-semibold">Repositories</h4>
+                        <div class="ml-4 space-y-2">
+                          <a
+                            v-for="(repo, repoIndex) in project.repoLinks"
+                            :key="repoIndex"
+                            :href="repo.url"
+                            target="_blank"
+                            class="text-blue-600 hover:text-blue-800 transition-colors block"
+                          >
+                            {{ repo.name }}
+                          </a>
+                        </div>
                       </div>
 
-                      <h4 class="text-lg font-semibold">Live Demo</h4>
-                      <div class="ml-4">
-                        <a
-                          :href="project.liveLink"
-                          target="_blank"
-                          class="text-blue-600 hover:text-blue-800 transition-colors block"
-                        >
-                          View Live Demo
-                        </a>
+                      <!-- Live Demo Section (Conditionally Rendered) -->
+                      <div v-if="project.liveLink">
+                        <h4 class="text-lg font-semibold">Live Demo</h4>
+                        <div class="ml-4">
+                          <a
+                            :href="project.liveLink"
+                            target="_blank"
+                            class="text-blue-600 hover:text-blue-800 transition-colors block"
+                          >
+                            View Live Demo
+                          </a>
+                        </div>
                       </div>
                     </div>
                     <div class="lg:w-1/2 mt-4 lg:mt-0">
