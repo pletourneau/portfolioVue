@@ -49,9 +49,9 @@ createApp({
             <p>Quixx is a real-time multiplayer online game that offers an engaging and interactive experience. Utilizing Vue.js for the frontend and Node.js/Express for the backend with WebSockets, Quixx ensures seamless gameplay and instant updates. Hosted on Netlify and Render, it demonstrates full-stack development capabilities and real-time communication.</p>
           `,
           previewImages: [
-            "assets/images/quixxScreenshot1.jpg",
-            "assets/images/quixxScreenshot2.jpg",
-            "assets/images/quixxScreenshot3.jpg",
+            "assets/images/quixxScreenshot.jpg",
+            // "assets/images/quixxScreenshot2.jpg",
+            // "assets/images/quixxScreenshot3.jpg",
           ],
           currentImageIndex: 0,
           liveLink: "https://verdant-otter-7da637.netlify.app/",
