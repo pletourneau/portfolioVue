@@ -78,7 +78,7 @@ createApp({
                 "Front end designed with Vue and Tailwind CSS. Game is functional!",
             },
             {
-              date: "December 2024",
+              date: "January 2025",
               event:
                 "Game testing. Render server is unreliable. Plan to change structure of game to add database",
             },
