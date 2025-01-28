@@ -66,6 +66,23 @@ createApp({
             },
           ],
           open: false,
+          timeline: [
+            // New Timeline Field
+            {
+              date: "November/December 2024",
+              event: "Backend coding and game logic",
+            },
+            {
+              date: "December 2024",
+              event:
+                "Front end designed with Vue and Tailwind CSS. Game is functional!",
+            },
+            {
+              date: "December 2024",
+              event:
+                "Game testing. Render server is unreliable. Plan to change structure of game to add database",
+            },
+          ],
         },
         {
           title: "Custom WordPress Page/Theme",
