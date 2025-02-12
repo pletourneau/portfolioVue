@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paul LeTourneau | Portfolio</title>
+    <meta
+      name="description"
+      content="Paul's portfolio showcasing projects in web development, UX, and analytics."
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Paul LeTourneau",
+        "url": "https://yourusername.github.io/",
+        "sameAs": [
+          "https://www.linkedin.com/in/paulcletourneau",
+          "https://github.com/pletourneau",
+          "mailto:thepaulletourneau@gmail.com"
+        ],
+        "jobTitle": "Front-End Developer & UX Specialist",
+
+        "knowsAbout": [
+          "Web Development",
+          "UX Design",
+          "WordPress",
+          "Vue.js",
+          "Data Analytics"
+        ]
+      }
+    </script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS CSS for animations -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Custom Styles */
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* HOME SECTION */
+      #home {
+        position: relative; /* Establish positioning context */
+        overflow: hidden; /* Clip overflowing parts */
+        background: linear-gradient(to right, #4265a1, #dae4f5);
+      }
+
+      /* Pseudo-Element for Background Image */
+      #home::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("assets/images/koi.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* Apply the static clip-path */
+        clip-path: polygon(0% 30%, 100% 30%, 100% 100%, 0% 100%);
+        -webkit-clip-path: polygon(
+          0% 60%,
+          100% 0%,
+          100% 100%,
+          0% 100%
+        ); /* For Safari */
+
+        z-index: 0; /* Place behind the content */
+        /* No transition needed for static clip-path */
+      }
+
+      #home > div {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ABOUT SECTION */
+      #about {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        --about-clip-path: polygon(0% 24%, 50% 0%, 100% 8%, 100% 81%, 15% 100%);
+        background: linear-gradient(to right, #4265a1, #dae4f5);
+      }
+
+      #about::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("assets/images/moto.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* Apply the static clip-path */
+        clip-path: var(--about-clip-path);
+        -webkit-clip-path: var(--about-clip-path); /* For Safari */
+        z-index: 0;
+      }
+
+      #about > div {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* SERVICES SECTION */
+      #services {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background: linear-gradient(to right, #4265a1, #dae4f5);
+      }
+
+      #services > div {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* PROJECTS SECTION */
+      #portfolio {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(to right, #4265a1, #dae4f5);
+      }
+
+      #portfolio > div {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* CONTACT SECTION */
+      #contact {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(to right, #202a3b, #c1d5f7);
+      }
+
+      /* Pseudo-Element for Background Image with Clip-Path */
+      #contact::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("assets/images/reachOut.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+        -webkit-clip-path: polygon(
+          20% 0%,
+          80% 0%,
+          100% 100%,
+          0% 100%
+        ); /* For Safari */
+        z-index: 0;
+      }
+
+      #contact > div {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Fade Transition */
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.3s ease;
+      }
+      .fade-enter-from,
+      .fade-leave-to {
+        opacity: 0;
+      }
+
+      /* Accordion Arrow Rotation */
+      .rotate-180 {
+        transform: rotate(180deg);
+      }
+    </style>
+    <meta
+      name="google-site-verification"
+      content="b_beH_Sf0cdzAjngjErWErCHNtrRlZytZIrAv3h_N7c"
+    />
+  </head>
+
+  <body class="bg-white text-gray-800">
+    <!-- Main Vue App -->
+    <div id="app">
+      <!-- NAVBAR -->
+      <header
+        :class="{
+          'fixed top-0 left-0 w-full bg-white bg-opacity-90 shadow-md transition-all duration-300': true,
+          'shadow-lg': isNavbarScrolled,
+        }"
+        class="z-50"
+      >
+        <nav class="container mx-auto p-4 flex items-center">
+          <!-- Navigation Links (Desktop) -->
+          <ul class="hidden md:flex space-x-6 ml-auto">
+            <li>
+              <a
+                href="#home"
+                class="hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'home'; closeMobileMenu()"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'about'; closeMobileMenu()"
+                >About</a
+              >
+            </li>
+            <!-- <li>
+              <a
+                href="#services"
+                class="hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'services'; closeMobileMenu()"
+                >Services</a
+              >
+            </li> -->
+            <li>
+              <a
+                href="#portfolio"
+                class="hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'portfolio'; closeMobileMenu()"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'contact'; closeMobileMenu()"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button
+              @click="isMobileMenuOpen = !isMobileMenuOpen"
+              class="focus:outline-none"
+              aria-label="Toggle Mobile Menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div v-if="isMobileMenuOpen" class="md:hidden bg-white p-4">
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="#home"
+                class="block hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'home'; closeMobileMenu()"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="block hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'about'; closeMobileMenu()"
+                >About</a
+              >
+            </li>
+            <!-- <li>
+              <a
+                href="#services"
+                class="block hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'services'; closeMobileMenu()"
+                >Services</a
+              >
+            </li> -->
+            <li>
+              <a
+                href="#portfolio"
+                class="block hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'portfolio'; closeMobileMenu()"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="block hover:text-blue-600 transition-colors"
+                @click.prevent="currentSection = 'contact'; closeMobileMenu()"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </header>
+
+      <!-- HOME SECTION -->
+      <section
+        id="home"
+        v-if="currentSection === 'home'"
+        class="flex items-center justify-center text-center px-6 md:px-12 min-h-screen"
+      >
+        <!-- Content Box -->
+        <div
+          class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
+        >
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            Hi, I’m Paul
+          </h1>
+          <p class="text-lg md:text-xl text-gray-700 mb-6">
+            <div>
+              Front End Developer
+            </div>
+            <div>
+              Wordpress Design
+            </div>
+            <div>
+              Technical Sales
+            </div>
+            <br/>
+          </p>
+          <button
+            @click="currentSection = 'about'"
+            class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
+          >
+            Learn More
+          </button>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section
+        id="about"
+        v-if="currentSection === 'about'"
+        class="px-6 md:px-12 min-h-screen flex items-center justify-center bg-cover bg-center relative"
+      >
+        <!-- Content Box -->
+        <div
+          class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-2xl shadow-lg flex flex-col items-center relative z-10"
+        >
+          <!-- Text Content -->
+          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
+            About Me
+          </h2>
+          <p
+            class="text-gray-700 text-base md:text-lg leading-relaxed text-center"
+          >
+            Based in Seattle, WA, I am a junior developer transitioning from
+            sales and marketing with a passion for creating user-centric and
+            efficient web solutions.
+          </p>
+          <div class="mt-6 w-full">
+            <h3 class="text-xl font-semibold">Education:</h3>
+            <ul class="list-disc list-inside text-gray-600 mt-2">
+              <li>Certificate in Web & Mobile Development | Epicodus | 2024</li>
+              <li>
+                Graduate Certificate in UX Design | Metropolitan State
+                University | 2020
+              </li>
+              <li>
+                Bachelor of Science, Political Science | University of Minnesota
+                | 2012
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES SECTION -->
+      <!-- <section
+        id="services"
+        v-if="currentSection === 'services'"
+        class="px-6 md:px-12 bg-gray-100 min-h-screen"
+      >
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
+          Services & Skills
+        </h2>
+        <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            v-for="(service, index) in services"
+            :key="index"
+            class="bg-white shadow-md rounded-lg p-6 transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            data-aos="fade-up"
+          >
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+              {{ service.title }}
+            </h3>
+            <ul class="list-disc list-inside text-gray-600">
+              <li v-for="(point, i) in service.bulletPoints" :key="i">
+                {{ point }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section> -->
+
+<!-- PORTFOLIO SECTION -->
+<section
+  id="portfolio"
+  v-if="currentSection === 'portfolio'"
+  class="px-6 md:px-12 bg-gradient-to-r from-[#4265a1] to-[#dae4f5] min-h-screen relative overflow-hidden pt-20"
+>
+  <!-- Content Container -->
+  <div class="relative z-10 flex flex-col items-center">
+    <!-- Heading Box -->
+    <div class="bg-white bg-opacity-80 p-4 rounded-md mb-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900">
+        Projects
+      </h2>
+    </div>
+
+    <!-- Projects Content Container -->
+    <div class="w-full max-w-6xl mx-auto space-y-6">
+      <div
+        v-for="(project, index) in projects"
+        :key="index"
+        class="bg-gray-100 shadow-md rounded-lg p-4 transition-all duration-300"
+        data-aos="fade-up"
+      >
+        <!-- Project Header -->
+        <div
+          @click="toggleAccordion(index)"
+          class="cursor-pointer flex items-center justify-between"
+        >
+          <div class="flex items-center">
+            <img
+              :src="project.image"
+              :alt="project.title"
+              class="rounded-md w-24 h-24 object-cover shadow-sm mr-4"
+              loading="lazy"
+            />
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800">
+                {{ project.title }}
+              </h3>
+              <p class="text-gray-600">{{ project.shortDescription }}</p>
+            </div>
+          </div>
+          <svg
+            :class="{'transform rotate-180': project.open}"
+            class="h-6 w-6 text-gray-600 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            ></path>
+          </svg>
+        </div>
+
+        <!-- Accordion Content -->
+        <transition name="fade">
+          <div v-if="project.open" class="mt-4">
+            <div class="flex flex-col lg:flex-row lg:space-x-6">
+              <!-- Project Details -->
+              <div class="lg:w-1/2">
+                <!-- Structure -->
+                <h4 class="text-lg font-semibold">Structure</h4>
+                <p class="text-gray-700 mb-4">{{ project.structure }}</p>
+
+                <!-- Description -->
+                <h4 class="text-lg font-semibold">Description</h4>
+                <p
+                  class="text-gray-700 mb-4"
+                  v-html="project.longDescription"
+                ></p>
+
+                <!-- Timeline Section -->
+                <div v-if="project.timeline && project.timeline.length" class="mt-4">
+                  <h4 class="text-lg font-semibold mb-2">Project Timeline</h4>
+                  <div class="relative border-l-2 border-blue-500">
+                    <div
+                      v-for="(item, idx) in project.timeline"
+                      :key="idx"
+                      class="mb-10 ml-6 pl-6 relative"
+                      data-aos="fade-up"
+                      data-aos-delay="100"
+                    >
+                      <!-- Timeline Icon -->
+                      <span
+                        class="flex items-center justify-center w-6 h-6 bg-blue-500 text-white rounded-full -left-3 absolute"
+                      >
+                        <!-- Calendar Icon SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </span>
+                      <!-- Timeline Content -->
+                      <h5 class="mb-1 text-lg font-bold text-gray-800">
+                        {{ item.date }}
+                      </h5>
+                      <p class="text-gray-600">{{ item.event }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Repositories Section (Conditionally Rendered) -->
+                <div v-if="project.repoLinks && project.repoLinks.length" class="mt-4">
+                  <h4 class="text-lg font-semibold">Repositories</h4>
+                  <div class="ml-4 space-y-2">
+                    <a
+                      v-for="(repo, repoIndex) in project.repoLinks"
+                      :key="repoIndex"
+                      :href="repo.url"
+                      target="_blank"
+                      class="text-blue-600 hover:text-blue-800 transition-colors block"
+                    >
+                      {{ repo.name }}
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Live Demo Section (Conditionally Rendered) -->
+                <div v-if="project.liveLink" class="mt-4">
+                  <h4 class="text-lg font-semibold">Live Demo</h4>
+                  <div class="ml-4">
+                    <a
+                      :href="project.liveLink"
+                      target="_blank"
+                      class="text-blue-600 hover:text-blue-800 transition-colors block"
+                    >
+                      View Live Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project Gallery -->
+              <div class="lg:w-1/2 mt-4 lg:mt-0">
+                <div class="relative">
+                  <!-- Current Image with Fade Transition -->
+                  <transition name="fade">
+                    <img
+                      :key="project.currentImageIndex"
+                      :src="project.previewImages[project.currentImageIndex]"
+                      :alt="project.title + ' preview ' + (project.currentImageIndex + 1)"
+                      class="rounded-md w-full h-auto object-cover shadow-sm"
+                      loading="lazy"
+                    />
+                  </transition>
+
+                  <!-- Previous Image Button -->
+                  <button
+                    v-if="project.previewImages.length > 1"
+                    @click="prevImage(project)"
+                    class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white bg-opacity-75 hover:bg-opacity-100 text-gray-800 rounded-full p-2 focus:outline-none"
+                    aria-label="Previous Image"
+                  >
+                    <!-- Left Arrow SVG -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  <!-- Next Image Button -->
+                  <button
+                    v-if="project.previewImages.length > 1"
+                    @click="nextImage(project)"
+                    class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white bg-opacity-75 hover:bg-opacity-100 text-gray-800 rounded-full p-2 focus:outline-none"
+                    aria-label="Next Image"
+                  >
+                    <!-- Right Arrow SVG -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- CONTACT SECTION -->
+      <section
+        id="contact"
+        v-if="currentSection === 'contact'"
+        class="flex items-center justify-center text-center px-6 md:px-12 bg-gradient-to-r from-[#4265a1] to-[#dae4f5] min-h-screen pt-20"
+      >
+        <!-- Content Box -->
+        <div
+          class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
+        >
+          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
+            Reach Out
+          </h2>
+          <p class="text-lg text-gray-700 mb-4">
+            <strong>Phone:</strong> 651.207.7388
+          </p>
+          <p class="text-lg text-gray-700 mb-6">
+            <strong>Email:</strong>
+            <a
+              href="mailto:thepaulletourneau@gmail.com"
+              class="text-blue-600 hover:text-blue-800 transition-colors"
+              >thepaulletourneau@gmail.com</a
+            >
+          </p>
+          <div class="flex justify-center space-x-6">
+            <a
+              href="https://linkedin.com/in/paulcletourneau"
+              target="_blank"
+              class="text-blue-600 hover:text-blue-800 transition-colors"
+              aria-label="LinkedIn"
+            >
+              <!-- LinkedIn SVG Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.063-1.866-3.063-1.867 0-2.152 1.459-2.152 2.967v5.703h-3v-10h2.881v1.367h.041c.401-.762 1.381-1.566 2.843-1.566 3.046 0 3.607 2.006 3.607 4.617v5.592z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/pletourneau"
+              target="_blank"
+              class="text-blue-600 hover:text-blue-800 transition-colors"
+              aria-label="GitHub"
+            >
+              <!-- GitHub SVG Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.045.138 3.003.404 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12zm0 22c-1.104 0-2-.896-2-2s.896-2 2-2 2 .896 2 2-.896 2-2 2zm6-6.406c-.773 0-1.4.627-1.4 1.4s.627 1.4 1.4 1.4 1.4-.627 1.4-1.4-.627-1.4-1.4-1.4zm-3.6-10.188l-.6 2.4h-1.8l.6-2.4h1.8zm4.8 10.188c-.773 0-1.4.627-1.4 1.4s.627 1.4 1.4 1.4 1.4-.627 1.4-1.4-.627-1.4-1.4-1.4zm0 0"
+                />
+              </svg>
+            </a>
+          </div>
+          <p class="text-gray-600 mt-6">
+            © {{ currentYear }} Paul LeTourneau | Seattle, WA
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- AOS JS for animations -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <!-- Vue.js (Must be loaded before app.js) -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Include your custom Vue logic -->
+    <script src="app.js"></script>
+  </body>
+</html>
