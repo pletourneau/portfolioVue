@@ -48,7 +48,11 @@ createApp({
           longDescription: `
             <p>Quixx is a real-time multiplayer online game that offers an engaging and interactive experience. Utilizing Vue.js for the frontend and Node.js/Express for the backend with WebSockets, Quixx ensures seamless gameplay and instant updates. Hosted on Netlify and Render, it demonstrates full-stack development capabilities and real-time communication.</p>
           `,
-          previewImages: ["assets/images/quixxScreenshot.jpg"],
+          previewImages: [
+            "assets/images/quixxScreenshot.jpg",
+            // "assets/images/quixxScreenshot2.jpg",
+            // "assets/images/quixxScreenshot3.jpg",
+          ],
           currentImageIndex: 0,
           liveLink: "https://verdant-otter-7da637.netlify.app/",
           repoLinks: [
@@ -63,6 +67,7 @@ createApp({
           ],
           open: false,
           timeline: [
+            // New Timeline Field
             {
               date: "November/December 2024",
               event: "Backend coding and game logic",
@@ -105,22 +110,49 @@ createApp({
           structure: "WordPress with custom JavaScript optimizations",
           longDescription: `
             <p>
-              <strong>Situation:</strong> GIVE International Volunteers' WordPress website was loading slowly, averaging over 5 seconds per page...
+              <strong>Situation:</strong> GIVE International Volunteers' WordPress website was loading slowly, averaging over 5 seconds per page. This sluggish performance was negatively impacting user experience, leading to high bounce rates and decreased user engagement, especially among mobile users.
             </p>
             <p>
-              <strong>Task:</strong> Identify and implement strategies to reduce the website's load time...
+              <strong>Task:</strong> Identify and implement strategies to reduce the website's load time to enhance user engagement and improve overall performance metrics.
             </p>
             <p>
-              <strong>Action:</strong> Utilized Google Lighthouse and GA4 for performance audits...
+              <strong>Action:</strong> Utilized Google Lighthouse and GA4 for performance audits, optimized video file sizes, implemented video facades with custom JavaScript to defer video loading, focused on mobile performance enhancements, and targeted optimizations on landing and home pages.
             </p>
             <p>
-              <strong>Result:</strong> Successfully reduced average load times...
+              <strong>Result:</strong> Successfully reduced average load times from 5 seconds to under 2 seconds, increased page views by 25%, boosted user engagement by 20%, and decreased mobile bounce rates by 15%.
             </p>
           `,
-          previewImages: ["assets/images/GIVE.jpg"],
+          previewImages: [
+            "assets/images/GIVE.jpg",
+            // "assets/images/give-international-volunteers-preview2.jpg",
+          ],
           currentImageIndex: 0,
+          // liveLink and repoLinks are omitted as per your earlier request
           open: false,
         },
+        // {
+        //   title: "UX Redesign Case Study",
+        //   image: "assets/images/ux-case-study.png",
+        //   shortDescription: "UX redesign for non-profit",
+        //   structure: "Conducted user research and prototyping",
+        //   longDescription: `
+        //     <p>Led a UX redesign for a non-profit organization, conducting user interviews and usability testing. Created wireframes and prototypes using Figma, resulting in enhanced accessibility and user experience across their platform.</p>
+        //   `,
+        //   previewImages: [
+        //     "assets/images/ux-preview1.png",
+        //     "assets/images/ux-preview2.png",
+        //     "assets/images/ux-preview3.png",
+        //   ],
+        //   currentImageIndex: 0,
+        //   liveLink: "#",
+        //   repoLinks: [
+        //     {
+        //       name: "Repository",
+        //       url: "https://github.com/pletourneau/uxRedesign",
+        //     },
+        //   ],
+        //   open: false,
+        // },
       ],
       isNavbarScrolled: false,
       isMobileMenuOpen: false,
@@ -128,88 +160,8 @@ createApp({
     };
   },
   methods: {
-    initParticles() {
-      // Re-initialize Particles.js each time #home is inserted into the DOM
-      if (!document.getElementById("particles-js")) return;
-
-      /* The same configuration you used before. */
-      particlesJS("particles-js", {
-        particles: {
-          number: { value: 166, density: { enable: true, value_area: 800 } },
-          color: { value: "#1cb6b6" },
-          shape: {
-            type: "polygon",
-            stroke: { width: 0, color: "#000" },
-            polygon: { nb_sides: 9 },
-            image: {
-              src: "https://pletourneau.github.io/portfolioVue/assets/images/quixxScreenshot.jpg",
-              width: 100,
-              height: 100,
-            },
-          },
-          opacity: {
-            value: 0.3,
-            random: true,
-            anim: {
-              enable: false,
-              speed: 1,
-              opacity_min: 0.1,
-              sync: false,
-            },
-          },
-          size: {
-            value: 7.891476416322726,
-            random: false,
-            anim: {
-              enable: true,
-              speed: 10,
-              size_min: 40,
-              sync: false,
-            },
-          },
-          line_linked: {
-            enable: false,
-            distance: 200,
-            color: "#ffffff",
-            opacity: 1,
-            width: 2,
-          },
-          move: {
-            enable: true,
-            speed: 8,
-            direction: "none",
-            random: false,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-            attract: { enable: false, rotateX: 600, rotateY: 1200 },
-          },
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: { enable: false, mode: "grab" },
-            onclick: { enable: false, mode: "push" },
-            resize: true,
-          },
-          modes: {
-            grab: { distance: 400, line_linked: { opacity: 1 } },
-            bubble: {
-              distance: 400,
-              size: 40,
-              duration: 2,
-              opacity: 8,
-              speed: 3,
-            },
-            repulse: { distance: 200, duration: 0.4 },
-            push: { particles_nb: 4 },
-            remove: { particles_nb: 2 },
-          },
-        },
-        retina_detect: true,
-      });
-    },
     handleScroll() {
+      // Toggle navbar shadow based on scroll position
       this.isNavbarScrolled = window.scrollY > 50;
     },
     closeMobileMenu() {
@@ -223,8 +175,8 @@ createApp({
     debounce(func, wait = 20, immediate = true) {
       let timeout;
       return function () {
-        const context = this;
-        const args = arguments;
+        const context = this,
+          args = arguments;
         const later = function () {
           timeout = null;
           if (!immediate) func.apply(context, args);
@@ -235,10 +187,12 @@ createApp({
         if (callNow) func.apply(context, args);
       };
     },
+    // New Methods for Image Navigation
     prevImage(project) {
       if (project.currentImageIndex > 0) {
         project.currentImageIndex--;
       } else {
+        // If at the first image, loop to the last image
         project.currentImageIndex = project.previewImages.length - 1;
       }
     },
@@ -246,30 +200,15 @@ createApp({
       if (project.currentImageIndex < project.previewImages.length - 1) {
         project.currentImageIndex++;
       } else {
+        // If at the last image, loop back to the first image
         project.currentImageIndex = 0;
       }
     },
   },
-  watch: {
-    // Watch for home section to become active
-    currentSection(newVal) {
-      if (newVal === "home") {
-        // Wait until DOM is updated so #particles-js is back in the DOM
-        this.$nextTick(() => {
-          this.initParticles();
-        });
-      }
-    },
-  },
   mounted() {
-    // On initial load, if the user is on 'home', set up Particles
-    if (this.currentSection === "home") {
-      this.initParticles();
-    }
-
-    // Debounced scroll event
+    // Debounced scroll event listener for performance
     window.addEventListener("scroll", this.debounce(this.handleScroll, 20));
-    this.handleScroll();
+    this.handleScroll(); // Initialize on mount
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.debounce(this.handleScroll, 20));

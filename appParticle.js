@@ -48,11 +48,7 @@ createApp({
           longDescription: `
             <p>Quixx is a real-time multiplayer online game that offers an engaging and interactive experience. Utilizing Vue.js for the frontend and Node.js/Express for the backend with WebSockets, Quixx ensures seamless gameplay and instant updates. Hosted on Netlify and Render, it demonstrates full-stack development capabilities and real-time communication.</p>
           `,
-          previewImages: [
-            "assets/images/quixxScreenshot.jpg",
-            // "assets/images/quixxScreenshot2.jpg",
-            // "assets/images/quixxScreenshot3.jpg",
-          ],
+          previewImages: ["assets/images/quixxScreenshot.jpg"],
           currentImageIndex: 0,
           liveLink: "https://verdant-otter-7da637.netlify.app/",
           repoLinks: [
@@ -67,7 +63,6 @@ createApp({
           ],
           open: false,
           timeline: [
-            // New Timeline Field
             {
               date: "November/December 2024",
               event: "Backend coding and game logic",
@@ -110,49 +105,22 @@ createApp({
           structure: "WordPress with custom JavaScript optimizations",
           longDescription: `
             <p>
-              <strong>Situation:</strong> GIVE International Volunteers' WordPress website was loading slowly, averaging over 5 seconds per page. This sluggish performance was negatively impacting user experience, leading to high bounce rates and decreased user engagement, especially among mobile users.
+              <strong>Situation:</strong> GIVE International Volunteers' WordPress website was loading slowly...
             </p>
             <p>
-              <strong>Task:</strong> Identify and implement strategies to reduce the website's load time to enhance user engagement and improve overall performance metrics.
+              <strong>Task:</strong> Identify and implement strategies to reduce the website's load time...
             </p>
             <p>
-              <strong>Action:</strong> Utilized Google Lighthouse and GA4 for performance audits, optimized video file sizes, implemented video facades with custom JavaScript to defer video loading, focused on mobile performance enhancements, and targeted optimizations on landing and home pages.
+              <strong>Action:</strong> Utilized Google Lighthouse and GA4 for performance audits...
             </p>
             <p>
-              <strong>Result:</strong> Successfully reduced average load times from 5 seconds to under 2 seconds, increased page views by 25%, boosted user engagement by 20%, and decreased mobile bounce rates by 15%.
+              <strong>Result:</strong> Successfully reduced average load times...
             </p>
           `,
-          previewImages: [
-            "assets/images/GIVE.jpg",
-            // "assets/images/give-international-volunteers-preview2.jpg",
-          ],
+          previewImages: ["assets/images/GIVE.jpg"],
           currentImageIndex: 0,
-          // liveLink and repoLinks are omitted as per your earlier request
           open: false,
         },
-        // {
-        //   title: "UX Redesign Case Study",
-        //   image: "assets/images/ux-case-study.png",
-        //   shortDescription: "UX redesign for non-profit",
-        //   structure: "Conducted user research and prototyping",
-        //   longDescription: `
-        //     <p>Led a UX redesign for a non-profit organization, conducting user interviews and usability testing. Created wireframes and prototypes using Figma, resulting in enhanced accessibility and user experience across their platform.</p>
-        //   `,
-        //   previewImages: [
-        //     "assets/images/ux-preview1.png",
-        //     "assets/images/ux-preview2.png",
-        //     "assets/images/ux-preview3.png",
-        //   ],
-        //   currentImageIndex: 0,
-        //   liveLink: "#",
-        //   repoLinks: [
-        //     {
-        //       name: "Repository",
-        //       url: "https://github.com/pletourneau/uxRedesign",
-        //     },
-        //   ],
-        //   open: false,
-        // },
       ],
       isNavbarScrolled: false,
       isMobileMenuOpen: false,
@@ -160,8 +128,67 @@ createApp({
     };
   },
   methods: {
+    // Particles initialization (run once in mounted)
+    initParticles() {
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 100, density: { enable: true, value_area: 800 } },
+          shape: {
+            type: "polygon",
+            polygon: { nb_sides: 6 },
+            // If you want an image for ALL pages, you can do:
+            // type: "image",
+            // image: {
+            //   src: "assets/images/dumbass.png",
+            //   width: 100,
+            //   height: 100
+            // },
+          },
+          opacity: {
+            value: 0.3,
+            random: true,
+          },
+          size: {
+            value: 7,
+            random: true,
+            anim: {
+              enable: false,
+              speed: 4,
+              size_min: 0.1,
+              sync: false,
+            },
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            out_mode: "out",
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: false, mode: "grab" },
+            onclick: { enable: false, mode: "push" },
+          },
+          modes: {
+            grab: { distance: 200, line_linked: { opacity: 1 } },
+            bubble: {
+              distance: 250,
+              size: 0,
+              duration: 2,
+              opacity: 0,
+            },
+            repulse: { distance: 400, duration: 0.4 },
+            push: { particles_nb: 4 },
+            remove: { particles_nb: 2 },
+          },
+        },
+        retina_detect: true,
+      });
+    },
+
     handleScroll() {
-      // Toggle navbar shadow based on scroll position
       this.isNavbarScrolled = window.scrollY > 50;
     },
     closeMobileMenu() {
@@ -187,12 +214,10 @@ createApp({
         if (callNow) func.apply(context, args);
       };
     },
-    // New Methods for Image Navigation
     prevImage(project) {
       if (project.currentImageIndex > 0) {
         project.currentImageIndex--;
       } else {
-        // If at the first image, loop to the last image
         project.currentImageIndex = project.previewImages.length - 1;
       }
     },
@@ -200,15 +225,17 @@ createApp({
       if (project.currentImageIndex < project.previewImages.length - 1) {
         project.currentImageIndex++;
       } else {
-        // If at the last image, loop back to the first image
         project.currentImageIndex = 0;
       }
     },
   },
   mounted() {
-    // Debounced scroll event listener for performance
+    // Initialize Particles once (the #particles-js div is never removed now)
+    this.initParticles();
+
+    // Debounced scroll event
     window.addEventListener("scroll", this.debounce(this.handleScroll, 20));
-    this.handleScroll(); // Initialize on mount
+    this.handleScroll();
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.debounce(this.handleScroll, 20));
