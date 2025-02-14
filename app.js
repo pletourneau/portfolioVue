@@ -3,9 +3,7 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      isNavbarScrolled: false,
-      isMobileMenuOpen: false,
-      currentYear: new Date().getFullYear(),
+      currentSection: "home", // controlling which section is visible
       services: [
         {
           title: "WordPress Design & Development",
@@ -47,7 +45,10 @@ createApp({
           shortDescription: "Real-time multiplayer online game",
           structure: "Full-Stack JavaScript with Vue.js and Node.js/Express.js",
           longDescription: `
-            <p>Quixx is a real-time multiplayer online game that offers an engaging experience. Utilizing Vue.js for the frontend and Node.js/Express for the backend with WebSockets, Quixx ensures seamless gameplay. Hosted on Netlify and Render, it demonstrates full-stack development capabilities and real-time communication.</p>
+            <p>Quixx is a real-time multiplayer online game that offers an engaging and interactive experience.
+            Utilizing Vue.js for the frontend and Node.js/Express for the backend with WebSockets, Quixx ensures
+            seamless gameplay and instant updates. Hosted on Netlify and Render, it demonstrates full-stack development
+            capabilities and real-time communication.</p>
           `,
           previewImages: ["assets/images/quixxScreenshot.jpg"],
           currentImageIndex: 0,
@@ -76,17 +77,20 @@ createApp({
             {
               date: "January 2025",
               event:
-                "Testing. Render server is unreliable. Plan to add a database.",
+                "Game testing. Render server is unreliable. Plan to change structure of game to add database",
             },
           ],
         },
         {
           title: "Custom WordPress Page/Theme",
           image: "assets/images/MDpreview.webp",
-          shortDescription: "Theme development for migration from Squarespace",
-          structure: "Custom child theme using WordPress and PHP",
+          shortDescription: "Custom WordPress theme development for migration",
+          structure: "Developed a custom child theme using WordPress and PHP",
           longDescription: `
-            <p>Developed a custom child theme for a client transitioning from Squarespace to WordPress. Ensured consistent style and functionality, managed hosting and domain migration, and implemented a mobile-first responsive design.</p>
+            <p>Developed a custom child theme for a client transitioning from Squarespace to WordPress.
+            Replicated the Squarespace design and translated it into the WordPress environment, ensuring
+            consistency in style and functionality. Managed the migration of hosting and domain, and
+            implemented a mobile-first responsive design to enhance user experience across all devices.</p>
           `,
           previewImages: [
             "assets/images/MDResponsive.webp",
@@ -97,37 +101,55 @@ createApp({
           open: false,
         },
         {
-          title: "Website Performance Optimization for GIVE",
+          title:
+            "Website Performance Optimization for GIVE International Volunteers",
           image: "assets/images/GIVE.jpg",
-          shortDescription: "Reduced load times and enhanced user engagement.",
+          shortDescription:
+            "Optimized a WordPress website to significantly reduce load times and enhance user engagement.",
           structure: "WordPress with custom JavaScript optimizations",
           longDescription: `
-            <p><strong>Situation:</strong> GIVE International Volunteers' WordPress site was loading slowly, averaging over 5s/page. This hurt user engagement, particularly on mobile.</p>
-            <p><strong>Task:</strong> Identify and implement strategies to reduce load time and improve performance metrics.</p>
-            <p><strong>Action:</strong> Used Google Lighthouse & GA4 for audits, optimized video file sizes with custom JavaScript loading deferral, and focused on mobile performance enhancements.</p>
-            <p><strong>Result:</strong> Load times dropped under 2s, page views increased by 25%, user engagement up 20%, and mobile bounce rates down 15%.</p>
+            <p>
+              <strong>Situation:</strong> GIVE International Volunteers' WordPress website was loading slowly...
+            </p>
+            <p>
+              <strong>Task:</strong> Identify and implement strategies to reduce the website's load time...
+            </p>
+            <p>
+              <strong>Action:</strong> Utilized Google Lighthouse and GA4 for performance audits...
+            </p>
+            <p>
+              <strong>Result:</strong> Successfully reduced average load times...
+            </p>
           `,
           previewImages: ["assets/images/GIVE.jpg"],
           currentImageIndex: 0,
           open: false,
         },
       ],
+      isNavbarScrolled: false,
+      isMobileMenuOpen: false,
+      currentYear: new Date().getFullYear(),
     };
   },
   methods: {
     handleScroll() {
-      // Toggle navbar shadow based on scroll position
       this.isNavbarScrolled = window.scrollY > 50;
     },
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
+    },
+    toggleAccordion(index) {
+      // Only one project open at a time
+      this.projects.forEach((project, i) => {
+        project.open = i === index ? !project.open : false;
+      });
     },
     debounce(func, wait = 20, immediate = true) {
       let timeout;
       return function () {
         const context = this,
           args = arguments;
-        const later = () => {
+        const later = function () {
           timeout = null;
           if (!immediate) func.apply(context, args);
         };
@@ -136,12 +158,6 @@ createApp({
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
       };
-    },
-    toggleAccordion(index) {
-      // Expand/collapse only one project at a time
-      this.projects.forEach((project, i) => {
-        project.open = i === index ? !project.open : false;
-      });
     },
     prevImage(project) {
       if (project.currentImageIndex > 0) {
@@ -159,9 +175,9 @@ createApp({
     },
   },
   mounted() {
-    // Debounced scroll event listener for performance
+    // Debounced scroll event
     window.addEventListener("scroll", this.debounce(this.handleScroll, 20));
-    this.handleScroll(); // Initialize on mount
+    this.handleScroll();
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.debounce(this.handleScroll, 20));
