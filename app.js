@@ -1,10 +1,11 @@
-// app.js
 const { createApp } = Vue;
 
 createApp({
   data() {
     return {
-      currentSection: "home",
+      isNavbarScrolled: false,
+      isMobileMenuOpen: false,
+      currentYear: new Date().getFullYear(),
       services: [
         {
           title: "WordPress Design & Development",
@@ -46,13 +47,9 @@ createApp({
           shortDescription: "Real-time multiplayer online game",
           structure: "Full-Stack JavaScript with Vue.js and Node.js/Express.js",
           longDescription: `
-            <p>Quixx is a real-time multiplayer online game that offers an engaging and interactive experience. Utilizing Vue.js for the frontend and Node.js/Express for the backend with WebSockets, Quixx ensures seamless gameplay and instant updates. Hosted on Netlify and Render, it demonstrates full-stack development capabilities and real-time communication.</p>
+            <p>Quixx is a real-time multiplayer online game that offers an engaging experience. Utilizing Vue.js for the frontend and Node.js/Express for the backend with WebSockets, Quixx ensures seamless gameplay. Hosted on Netlify and Render, it demonstrates full-stack development capabilities and real-time communication.</p>
           `,
-          previewImages: [
-            "assets/images/quixxScreenshot.jpg",
-            // "assets/images/quixxScreenshot2.jpg",
-            // "assets/images/quixxScreenshot3.jpg",
-          ],
+          previewImages: ["assets/images/quixxScreenshot.jpg"],
           currentImageIndex: 0,
           liveLink: "https://verdant-otter-7da637.netlify.app/",
           repoLinks: [
@@ -67,7 +64,6 @@ createApp({
           ],
           open: false,
           timeline: [
-            // New Timeline Field
             {
               date: "November/December 2024",
               event: "Backend coding and game logic",
@@ -80,18 +76,17 @@ createApp({
             {
               date: "January 2025",
               event:
-                "Game testing. Render server is unreliable. Plan to change structure of game to add database",
+                "Testing. Render server is unreliable. Plan to add a database.",
             },
           ],
         },
         {
           title: "Custom WordPress Page/Theme",
           image: "assets/images/MDpreview.webp",
-          shortDescription:
-            "Custom WordPress theme development for client migration from Squarespace",
-          structure: "Developed a custom child theme using WordPress and PHP",
+          shortDescription: "Theme development for migration from Squarespace",
+          structure: "Custom child theme using WordPress and PHP",
           longDescription: `
-            <p>Developed a custom child theme for a client transitioning from Squarespace to WordPress. Replicated the Squarespace design and translated it into the WordPress environment, ensuring consistency in style and functionality. Managed the migration of hosting and domain, and implemented a mobile-first responsive design to enhance user experience across all devices.</p>
+            <p>Developed a custom child theme for a client transitioning from Squarespace to WordPress. Ensured consistent style and functionality, managed hosting and domain migration, and implemented a mobile-first responsive design.</p>
           `,
           previewImages: [
             "assets/images/MDResponsive.webp",
@@ -102,61 +97,21 @@ createApp({
           open: false,
         },
         {
-          title:
-            "Website Performance Optimization for GIVE International Volunteers",
+          title: "Website Performance Optimization for GIVE",
           image: "assets/images/GIVE.jpg",
-          shortDescription:
-            "Optimized a WordPress website to significantly reduce load times and enhance user engagement.",
+          shortDescription: "Reduced load times and enhanced user engagement.",
           structure: "WordPress with custom JavaScript optimizations",
           longDescription: `
-            <p>
-              <strong>Situation:</strong> GIVE International Volunteers' WordPress website was loading slowly, averaging over 5 seconds per page. This sluggish performance was negatively impacting user experience, leading to high bounce rates and decreased user engagement, especially among mobile users.
-            </p>
-            <p>
-              <strong>Task:</strong> Identify and implement strategies to reduce the website's load time to enhance user engagement and improve overall performance metrics.
-            </p>
-            <p>
-              <strong>Action:</strong> Utilized Google Lighthouse and GA4 for performance audits, optimized video file sizes, implemented video facades with custom JavaScript to defer video loading, focused on mobile performance enhancements, and targeted optimizations on landing and home pages.
-            </p>
-            <p>
-              <strong>Result:</strong> Successfully reduced average load times from 5 seconds to under 2 seconds, increased page views by 25%, boosted user engagement by 20%, and decreased mobile bounce rates by 15%.
-            </p>
+            <p><strong>Situation:</strong> GIVE International Volunteers' WordPress site was loading slowly, averaging over 5s/page. This hurt user engagement, particularly on mobile.</p>
+            <p><strong>Task:</strong> Identify and implement strategies to reduce load time and improve performance metrics.</p>
+            <p><strong>Action:</strong> Used Google Lighthouse & GA4 for audits, optimized video file sizes with custom JavaScript loading deferral, and focused on mobile performance enhancements.</p>
+            <p><strong>Result:</strong> Load times dropped under 2s, page views increased by 25%, user engagement up 20%, and mobile bounce rates down 15%.</p>
           `,
-          previewImages: [
-            "assets/images/GIVE.jpg",
-            // "assets/images/give-international-volunteers-preview2.jpg",
-          ],
+          previewImages: ["assets/images/GIVE.jpg"],
           currentImageIndex: 0,
-          // liveLink and repoLinks are omitted as per your earlier request
           open: false,
         },
-        // {
-        //   title: "UX Redesign Case Study",
-        //   image: "assets/images/ux-case-study.png",
-        //   shortDescription: "UX redesign for non-profit",
-        //   structure: "Conducted user research and prototyping",
-        //   longDescription: `
-        //     <p>Led a UX redesign for a non-profit organization, conducting user interviews and usability testing. Created wireframes and prototypes using Figma, resulting in enhanced accessibility and user experience across their platform.</p>
-        //   `,
-        //   previewImages: [
-        //     "assets/images/ux-preview1.png",
-        //     "assets/images/ux-preview2.png",
-        //     "assets/images/ux-preview3.png",
-        //   ],
-        //   currentImageIndex: 0,
-        //   liveLink: "#",
-        //   repoLinks: [
-        //     {
-        //       name: "Repository",
-        //       url: "https://github.com/pletourneau/uxRedesign",
-        //     },
-        //   ],
-        //   open: false,
-        // },
       ],
-      isNavbarScrolled: false,
-      isMobileMenuOpen: false,
-      currentYear: new Date().getFullYear(),
     };
   },
   methods: {
@@ -167,17 +122,12 @@ createApp({
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
     },
-    toggleAccordion(index) {
-      this.projects.forEach((project, i) => {
-        project.open = i === index ? !project.open : false;
-      });
-    },
     debounce(func, wait = 20, immediate = true) {
       let timeout;
       return function () {
         const context = this,
           args = arguments;
-        const later = function () {
+        const later = () => {
           timeout = null;
           if (!immediate) func.apply(context, args);
         };
@@ -187,12 +137,16 @@ createApp({
         if (callNow) func.apply(context, args);
       };
     },
-    // New Methods for Image Navigation
+    toggleAccordion(index) {
+      // Expand/collapse only one project at a time
+      this.projects.forEach((project, i) => {
+        project.open = i === index ? !project.open : false;
+      });
+    },
     prevImage(project) {
       if (project.currentImageIndex > 0) {
         project.currentImageIndex--;
       } else {
-        // If at the first image, loop to the last image
         project.currentImageIndex = project.previewImages.length - 1;
       }
     },
@@ -200,7 +154,6 @@ createApp({
       if (project.currentImageIndex < project.previewImages.length - 1) {
         project.currentImageIndex++;
       } else {
-        // If at the last image, loop back to the first image
         project.currentImageIndex = 0;
       }
     },
