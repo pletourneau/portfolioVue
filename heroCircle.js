@@ -28,14 +28,14 @@ function startCircleMovement() {
       velocityX = -velocityX; // Reverse horizontal direction
       velocityX *= 0.9 + Math.random() * 0.2; // Add some randomness to the bounce
     }
-    if (posY <= 0 || posY + circleRect.height >= heroRect.height) {
+    if (posY <= 0 || posY + circleRect.height >= window.innerHeight) {
       velocityY = -velocityY; // Reverse vertical direction
       velocityY *= 0.9 + Math.random() * 0.2; // Add some randomness to the bounce
     }
 
     // Ensure the circle stays within bounds
     posX = Math.max(0, Math.min(posX, heroRect.width - circleRect.width));
-    posY = Math.max(0, Math.min(posY, heroRect.height - circleRect.height));
+    posY = Math.max(0, Math.min(posY, window.innerHeight - circleRect.height));
 
     // Update the circle's CSS position
     circle.style.left = `${posX}px`;
