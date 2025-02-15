@@ -50,4 +50,4 @@ function startCircleMovement() {
 }
 
 // Initialize the circle's movement on page load
-window.addEventListener("load", startCircleMovement);
+window.addEventListener("DOMContentLoaded", startCircleMovement);
