@@ -62,6 +62,20 @@
   background-position: 50% 50%;
 }
 
+/* Hero Circle */
+.hero-circle {
+  position: absolute;
+  top: 35%; /* Adjust vertical placement */
+  left: 70%; /* Adjust horizontal placement */
+  /* transform: translate(-50%, -50%); */
+  width: 300px; /* Adjust size */
+  height: 300px; /* Adjust size */
+  background: rgba(200, 182, 20, 0.7); /* Semi-transparent white */
+  border-radius: 50%; /* Make it a circle */
+  transition: top 0.1s linear, left 0.1s linear;
+  z-index: 1; /* Place it above particles but below text */
+}
+
 /* Stats.js */
 .count-particles {
   background: #000022;
@@ -140,6 +154,12 @@
       #services > div {
         position: relative;
         z-index: 1;
+      }
+
+      #home {
+        min-height: 100vh; 
+        position: relative;
+        overflow: hidden;
       }
 
       /* PROJECTS SECTION */
@@ -329,10 +349,12 @@
       </header>
 
      <!-- HERO SECTION WITH PARTICLES.JS -->
-<section id="home" class="relative min-h-screen flex items-center justify-center text-center">
+<section id="home" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
   <!-- Particles.js Container -->
   <div id="particles-js"></div>
 
+   <!-- Circle -->
+   <div class="hero-circle"></div>
   <!-- Content Box -->
   <div
     class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg relative z-10"
@@ -947,6 +969,7 @@
   requestAnimationFrame(update);
 </script>
 <script src="scramble.js"></script>
+<script src="heroCircle.js"></script>
 
   </body>
 </html>
