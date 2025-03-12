@@ -567,7 +567,7 @@
                         v-if="project.repoLinks && project.repoLinks.length"
                         class="mt-4"
                       >
-                        <h4 class="text-lg font-semibold">Repositories</h4>
+                        <h4 class="text-lg text-slate-700 font-semibold">Repositories</h4>
                         <div class="ml-4 space-y-2">
                           <a
                             v-for="(repo, repoIndex) in project.repoLinks"
@@ -583,7 +583,7 @@
 
                       <!-- Live Demo Section -->
                       <div v-if="project.liveLink" class="mt-4">
-                        <h4 class="text-lg font-semibold">Live Demo</h4>
+                        <h4 class="text-lg text-slate-700 font-semibold">Live Demo</h4>
                         <div class="ml-4">
                           <a
                             :href="project.liveLink"
