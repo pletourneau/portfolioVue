@@ -2,19 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paul LeTourneau | Portfolio</title>
     <meta
       name="description"
       content="Paul's portfolio showcasing projects in web development, UX, and analytics."
     />
 
+    <!-- JSON-LD Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Paul LeTourneau",
-        "url": "https://yourusername.github.io/",
+        "url": "https://pletourneau.github.io/portfolioVue/",
         "sameAs": [
           "https://www.linkedin.com/in/paulcletourneau",
           "https://github.com/pletourneau",
@@ -49,76 +50,74 @@
     />
 
     <style>
-
       /* Particles.js Container */
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #41416b;
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
-}
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #41416b;
+        background-image: url("");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+      }
 
-/* Hero Circle */
-.hero-circle {
-  position: absolute;
-  top: 35%; /* Adjust vertical placement */
-  left: 70%; /* Adjust horizontal placement */
-  /* transform: translate(-50%, -50%); */
-  width: 300px; /* Adjust size */
-  height: 300px; /* Adjust size */
-  background: rgba(200, 182, 20, 0.7); /* Semi-transparent white */
-  border-radius: 50%; /* Make it a circle */
-  transition: top 0.1s linear, left 0.1s linear;
-  z-index: 1; /* Place it above particles but below text */
-}
+      /* Hero Circle */
+      .hero-circle {
+        position: absolute;
+        top: 35%;
+        left: 70%;
+        width: 300px;
+        height: 300px;
+        background: rgba(200, 182, 20, 0.7);
+        border-radius: 50%;
+        transition: top 0.1s linear, left 0.1s linear;
+        z-index: 1;
+      }
+      @media (max-width: 767px) {
+        .hero-circle {
+          width: 30vw;
+          height: 30vw;
+        }
+      }
 
-@media (max-width: 767px) {
-  .hero-circle {
-    width: 30vw;
-    height: 30vw;
-  }
-}
+      /* Stats.js */
+      .count-particles {
+        background: #000022;
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 80px;
+        color: #13e8e9;
+        font-size: 0.8em;
+        text-align: left;
+        text-indent: 4px;
+        line-height: 14px;
+        padding-bottom: 2px;
+        font-family: Montserrat, sans-serif;
+        font-weight: bold;
+      }
+      .js-count-particles {
+        font-size: 1.1em;
+      }
+      #stats,
+      .count-particles {
+        -webkit-user-select: none;
+        user-select: none;
+        margin-top: 5px;
+        margin-left: 5px;
+      }
+      #stats {
+        border-radius: 3px 3px 0 0;
+        overflow: hidden;
+      }
+      .count-particles {
+        border-radius: 0 0 3px 3px;
+      }
 
-/* Stats.js */
-.count-particles {
-  background: #000022;
-  position: absolute;
-  top: 48px;
-  left: 0;
-  width: 80px;
-  color: #13e8e9;
-  font-size: 0.8em;
-  text-align: left;
-  text-indent: 4px;
-  line-height: 14px;
-  padding-bottom: 2px;
-  font-family: Montserrat, sans-serif;
-  font-weight: bold;
-}
-.js-count-particles {
-  font-size: 1.1em;
-}
-#stats,
-.count-particles {
-  -webkit-user-select: none;
-  user-select: none;
-  margin-top: 5px;
-  margin-left: 5px;
-}
-#stats {
-  border-radius: 3px 3px 0 0;
-  overflow: hidden;
-}
-.count-particles {
-  border-radius: 0 0 3px 3px;
-}
       /* Custom Styles */
       html {
-        scroll-behavior: smooth; /* Enables smooth scrolling to anchors */
+        scroll-behavior: smooth;
       }
       body {
         font-family: "Montserrat", sans-serif;
@@ -164,7 +163,7 @@
       }
 
       #home {
-        min-height: 100vh; 
+        min-height: 100vh;
         position: relative;
         overflow: hidden;
       }
@@ -184,26 +183,7 @@
       #contact {
         position: relative;
         overflow: hidden;
-        background: linear-gradient(to right, #202a3b, #c1d5f7);
-      }
-      #contact::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("assets/images/reachOut.webp");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-        -webkit-clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-        z-index: 0;
-      }
-      #contact > div {
-        position: relative;
-        z-index: 1;
+        background: linear-gradient(to right, #4265a1, #dae4f5);
       }
 
       /* Fade Transition */
@@ -234,7 +214,7 @@
       <header
         :class="{
           'fixed top-0 left-0 w-full bg-slate-900 bg-opacity-90 shadow-md transition-all duration-300': true,
-          'shadow-lg': isNavbarScrolled,
+          'shadow-lg': isNavbarScrolled
         }"
         class="z-50"
       >
@@ -257,14 +237,6 @@
                 >About</a
               >
             </li>
-            <!-- <li>
-              <a
-                href="#services"
-                class="hover:text-blue-600 transition-colors"
-                @click="closeMobileMenu"
-                >Services</a
-              >
-            </li> -->
             <li>
               <a
                 href="#portfolio"
@@ -309,7 +281,10 @@
         </nav>
 
         <!-- Mobile Menu -->
-        <div v-if="isMobileMenuOpen" class="md:hidden bg-white bg-opacity-80 p-4 inline-block w-fit mx-auto">
+        <div
+          v-if="isMobileMenuOpen"
+          class="md:hidden bg-white bg-opacity-80 p-4 inline-block w-fit mx-auto"
+        >
           <ul class="space-y-2">
             <li>
               <a
@@ -327,14 +302,6 @@
                 >About</a
               >
             </li>
-            <!-- <li>
-              <a
-                href="#services"
-                class="block hover:text-blue-600 transition-colors"
-                @click="closeMobileMenu"
-                >Services</a
-              >
-            </li> -->
             <li>
               <a
                 href="#portfolio"
@@ -355,39 +322,44 @@
         </div>
       </header>
 
-     <!-- HERO SECTION WITH PARTICLES.JS -->
-<section id="home" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-  <!-- Particles.js Container -->
-  <div id="particles-js"></div>
+      <!-- HERO SECTION -->
+      <section
+        id="home"
+        class="relative min-h-screen flex items-center justify-center text-center overflow-hidden"
+      >
+        <!-- Particles.js Container -->
+        <div id="particles-js"></div>
 
-   <!-- Circle -->
-   <div class="hero-circle"></div>
-  <!-- Content Box -->
-  <div
-    class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg relative z-10"
-  >
-  <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-    Hi, I’m Paul
-  </h1>
-  <p class="text-lg md:text-xl text-slate-900 mb-6">
-    <div><span class="scramble-text text-slate-900">Front End Developer</span></div>
-    <br/>
-  </p>
-    <a
-      href="#about"
-      class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
-    >
-      Learn More
-    </a>
-  </div>
-</section>
+        <!-- Hero Circle -->
+        <div class="hero-circle"></div>
+
+        <!-- Content Box -->
+        <div
+          class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg relative z-10"
+        >
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            Hi, I’m Paul
+          </h1>
+          <p class="text-lg md:text-xl text-slate-900 mb-6">
+            <div>
+              <span class="scramble-text text-slate-900">Front End Developer</span>
+            </div>
+            <br />
+          </p>
+          <a
+            href="#about"
+            class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
+          >
+            Learn More
+          </a>
+        </div>
+      </section>
 
       <!-- ABOUT SECTION -->
       <section
         id="about"
         class="px-6 md:px-12 min-h-screen flex items-center justify-center bg-cover bg-center relative"
       >
-        <!-- Content Box -->
         <div
           class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-2xl shadow-lg flex flex-col items-center relative z-10"
         >
@@ -402,48 +374,19 @@
           <div class="mt-6 w-full">
             <h3 class="text-xl text-slate-900 font-semibold">Education:</h3>
             <ul class="list-disc list-inside text-gray-600 mt-2">
-              <li>Certificate in Web & Mobile Development | Epicodus | 2024</li>
               <li>
-                Graduate Certificate in UX Design | Metropolitan State
-                University | 2020
+                Certificate in Web & Mobile Development | Epicodus | 2024
               </li>
               <li>
-                Bachelor of Science, Political Science | University of Minnesota
-                | 2012
+                Graduate Certificate in UX Design | Metropolitan State University | 2020
+              </li>
+              <li>
+                Bachelor of Science, Political Science | University of Minnesota | 2012
               </li>
             </ul>
           </div>
         </div>
       </section>
-
-      <!-- SERVICES SECTION (Optional) -->
-      <!-- 
-      <section
-        id="services"
-        class="px-6 md:px-12 bg-gray-100 min-h-screen"
-      >
-        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
-          Services & Skills
-        </h2>
-        <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <div
-            v-for="(service, index) in services"
-            :key="index"
-            class="bg-white shadow-md rounded-lg p-6 transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-            data-aos="fade-up"
-          >
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">
-              {{ service.title }}
-            </h3>
-            <ul class="list-disc list-inside text-gray-600">
-              <li v-for="(point, i) in service.bulletPoints" :key="i">
-                {{ point }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      -->
 
       <!-- PORTFOLIO SECTION -->
       <section
@@ -451,22 +394,19 @@
         class="px-6 md:px-12 bg-gradient-to-r from-[#4265a1] to-[#dae4f5] min-h-screen relative overflow-hidden pt-20"
       >
         <div class="relative z-10 flex flex-col items-center">
-          <!-- Heading Box -->
           <div class="bg-white bg-opacity-80 p-4 rounded-md mb-8">
             <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900">
               Projects
             </h2>
           </div>
-
-          <!-- Projects Content Container -->
           <div class="w-full max-w-6xl mx-auto space-y-6">
+            <!-- Projects Loop -->
             <div
               v-for="(project, index) in projects"
               :key="index"
               class="bg-gray-100 shadow-md rounded-lg p-4 transition-all duration-300"
               data-aos="fade-up"
             >
-              <!-- Project Header -->
               <div
                 @click="toggleAccordion(index)"
                 class="cursor-pointer flex items-center justify-between"
@@ -501,23 +441,17 @@
                   ></path>
                 </svg>
               </div>
-
-              <!-- Accordion Content -->
               <transition name="fade">
                 <div v-if="project.open" class="mt-4">
                   <div class="flex flex-col lg:flex-row lg:space-x-6">
-                    <!-- Project Details -->
                     <div class="lg:w-1/2">
                       <h4 class="text-lg text-slate-700 font-semibold">Structure</h4>
                       <p class="text-slate-700 mb-4">{{ project.structure }}</p>
-
                       <h4 class="text-lg text-slate-700 font-semibold">Description</h4>
                       <p
                         class="text-slate-700 mb-4"
                         v-html="project.longDescription"
                       ></p>
-
-                      <!-- Timeline Section -->
                       <div
                         v-if="project.timeline && project.timeline.length"
                         class="mt-4"
@@ -533,11 +467,9 @@
                             data-aos="fade-up"
                             data-aos-delay="100"
                           >
-                            <!-- Timeline Icon -->
                             <span
                               class="flex items-center justify-center w-6 h-6 bg-blue-500 text-white rounded-full -left-3 absolute"
                             >
-                              <!-- Calendar Icon SVG -->
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 class="h-4 w-4"
@@ -553,7 +485,6 @@
                                 />
                               </svg>
                             </span>
-                            <!-- Timeline Content -->
                             <h5 class="mb-1 text-lg font-bold text-gray-800">
                               {{ item.date }}
                             </h5>
@@ -561,13 +492,13 @@
                           </div>
                         </div>
                       </div>
-
-                      <!-- Repositories Section -->
                       <div
                         v-if="project.repoLinks && project.repoLinks.length"
                         class="mt-4"
                       >
-                        <h4 class="text-lg text-slate-700 font-semibold">Repositories</h4>
+                        <h4 class="text-lg text-slate-700 font-semibold">
+                          Repositories
+                        </h4>
                         <div class="ml-4 space-y-2">
                           <a
                             v-for="(repo, repoIndex) in project.repoLinks"
@@ -580,10 +511,10 @@
                           </a>
                         </div>
                       </div>
-
-                      <!-- Live Demo Section -->
                       <div v-if="project.liveLink" class="mt-4">
-                        <h4 class="text-lg text-slate-700 font-semibold">Live Demo</h4>
+                        <h4 class="text-lg text-slate-700 font-semibold">
+                          Live Demo
+                        </h4>
                         <div class="ml-4">
                           <a
                             :href="project.liveLink"
@@ -595,11 +526,8 @@
                         </div>
                       </div>
                     </div>
-
-                    <!-- Project Gallery -->
                     <div class="lg:w-1/2 mt-4 lg:mt-0">
                       <div class="relative">
-                        <!-- Current Image with Fade Transition -->
                         <transition name="fade">
                           <img
                             :key="project.currentImageIndex"
@@ -609,15 +537,12 @@
                             loading="lazy"
                           />
                         </transition>
-
-                        <!-- Previous Image Button -->
                         <button
                           v-if="project.previewImages.length > 1"
                           @click="prevImage(project)"
                           class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white bg-opacity-75 hover:bg-opacity-100 text-gray-800 rounded-full p-2 focus:outline-none"
                           aria-label="Previous Image"
                         >
-                          <!-- Left Arrow SVG -->
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6"
@@ -633,15 +558,12 @@
                             />
                           </svg>
                         </button>
-
-                        <!-- Next Image Button -->
                         <button
                           v-if="project.previewImages.length > 1"
                           @click="nextImage(project)"
                           class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white bg-opacity-75 hover:bg-opacity-100 text-gray-800 rounded-full p-2 focus:outline-none"
                           aria-label="Next Image"
                         >
-                          <!-- Right Arrow SVG -->
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6"
@@ -663,171 +585,82 @@
                 </div>
               </transition>
             </div>
+            <!-- End Projects Loop -->
           </div>
         </div>
       </section>
 
-      <!-- CONTACT SECTION -->
+      <!-- CONTACT SECTION with Updated Layout -->
       <section
         id="contact"
         class="flex items-center justify-center text-center px-6 md:px-12 bg-gradient-to-r from-[#4265a1] to-[#dae4f5] min-h-screen pt-20"
       >
-        <div
-          class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg"
-        >
-          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
-            Reach Out
-          </h2>
-          <p class="text-lg text-gray-700 mb-4">
-            <strong>Phone:</strong> 651.207.7388
-          </p>
-          <p class="text-lg text-gray-700 mb-6">
-            <strong>Email:</strong>
-            <a
-              href="mailto:thepaulletourneau@gmail.com"
-              class="text-blue-600 hover:text-blue-800 transition-colors"
-            >
-              thepaulletourneau@gmail.com
-            </a>
-          </p>
-          <div class="flex justify-center space-x-6">
-            <a
-              href="https://linkedin.com/in/paulcletourneau"
-              target="_blank"
-              class="text-blue-600 hover:text-blue-800 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <!-- LinkedIn SVG Icon -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761
-                  2.239 5 5 5h14c2.761 0 5-2.239
-                  5-5v-14c0-2.761-2.239-5-5-5zm-11
-                  19h-3v-10h3v10zm-1.5-11.268c-.966
-                  0-1.75-.784-1.75-1.75s.784-1.75
-                  1.75-1.75 1.75.784 1.75
-                  1.75-.784 1.75-1.75
-                  1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.063-1.866-3.063-1.867
-                  0-2.152 1.459-2.152 2.967v5.703h-3v-10h2.881v1.367h.041c.401-.762
-                  1.381-1.566
-                  2.843-1.566 3.046 0
-                  3.607 2.006 3.607 4.617v5.592z"
-                />
-              </svg>
-            </a>
-            <a
-              href="https://github.com/pletourneau"
-              target="_blank"
-              class="text-blue-600 hover:text-blue-800 transition-colors"
-              aria-label="GitHub"
-            >
-              <!-- GitHub SVG Icon -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12
-                  .297c-6.63
-                  0-12
-                  5.373-12
-                  12
-                  0
-                  5.303
-                  3.438
-                  9.8
-                  8.205
-                  11.385.6.113.82-.258.82-.577
-                  0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729
-                  1.205.084
-                  1.84
-                  1.236
-                  1.84
-                  1.236
-                  1.07
-                  1.835
-                  2.807
-                  1.304
-                  3.492.997.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93
-                  0-1.31.47-2.38
-                  1.235-3.22-.135-.303-.54-1.523.105-3.176
-                  0
-                  0
-                  1.005-.322
-                  3.3
-                  1.23a11.52
-                  11.52
-                  0
-                  013.003-.404c1.02.005
-                  2.045.138
-                  3.003.404
-                  2.28-1.552
-                  3.285-1.23
-                  3.285-1.23.645
-                  1.653.24
-                  2.873.12
-                  3.176.765.84
-                  1.23
-                  1.91
-                  1.23
-                  3.22
-                  0
-                  4.61-2.805
-                  5.625-5.475
-                  5.92.42.36.81
-                  1.096.81
-                  2.22
-                  0
-                  1.606-.015
-                  2.896-.015
-                  3.286
-                  0
-                  .315.21.69.825.57C20.565
-                  22.092
-                  24
-                  17.592
-                  24
-                  12.297c0-6.627-5.373-12-12-12zm0
-                  22c-1.104
-                  0-2-.896-2-2s.896-2
-                  2-2
-                  2
-                  .896
-                  2
-                  2-.896
-                  2-2
-                  2zm6-6.406c-.773
-                  0-1.4.627-1.4
-                  1.4s.627
-                  1.4
-                  1.4
-                  1.4
-                  1.4-.627
-                  1.4-1.4-.627-1.4-1.4-1.4zm-3.6-10.188l-.6
-                  2.4h-1.8l.6-2.4h1.8zm4.8
-                  10.188c-.773
-                  0-1.4.627-1.4
-                  1.4s.627
-                  1.4
-                  1.4
-                  1.4
-                  1.4-.627
-                  1.4-1.4-.627-1.4-1.4-1.4zm0
-                  0"
-                />
-              </svg>
-            </a>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+          <!-- Image Box -->
+          <div class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg">
+            <img
+              src="assets/images/reachOut.webp"
+              alt="Reach Out"
+              class="w-full h-full object-cover rounded-lg"
+            />
           </div>
-          <p class="text-gray-600 mt-6">
-            © {{ currentYear }} Paul LeTourneau | Seattle, WA
-          </p>
+          <!-- Contact Info Box -->
+          <div class="bg-white bg-opacity-80 rounded-lg p-6 md:p-12 max-w-md shadow-lg">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
+              Reach Out
+            </h2>
+            <p class="text-lg text-gray-700 mb-4">
+              <strong>Phone:</strong> 651.207.7388
+            </p>
+            <p class="text-lg text-gray-700 mb-6">
+              <strong>Email:</strong>
+              <a
+                href="mailto:thepaulletourneau@gmail.com"
+                class="text-blue-600 hover:text-blue-800 transition-colors"
+              >
+                thepaulletourneau@gmail.com
+              </a>
+            </p>
+            <div class="flex justify-center space-x-6">
+              <a
+                href="https://linkedin.com/in/paulcletourneau"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.063-1.866-3.063-1.867 0-2.152 1.459-2.152 2.967v5.703h-3v-10h2.881v1.367h.041c.401-.762 1.381-1.566 2.843-1.566 3.046 0 3.607 2.006 3.607 4.617v5.592z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://github.com/pletourneau"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors"
+                aria-label="GitHub"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.045.138 3.003.404 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.91 1.23 3.22 1.23 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12zm0 22c-1.104 0-2-.896-2-2s.896-2 2-2 2 .896 2 2-.896 2-2 2zm6-6.406c-.773 0-1.4.627-1.4 1.4s.627 1.4 1.4 1.4 1.4-.627 1.4-1.4-.627-1.4-1.4-1.4zm-3.6-10.188l-.6 2.4h-1.8l.6-2.4h1.8zm4.8 10.188c-.773 0-1.4.627-1.4 1.4s.627 1.4 1.4 1.4 1.4-.627 1.4-1.4-.627-1.4-1.4-1.4zm0 0"
+                  />
+                </svg>
+              </a>
+            </div>
+            <p class="text-gray-600 mt-6">
+              © {{ currentYear }} Paul LeTourneau | Seattle, WA
+            </p>
+          </div>
         </div>
       </section>
     </div>
@@ -845,138 +678,89 @@
     <script src="app.js"></script>
 
     <!-- Particles.js Library -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-<!-- Stats.js Library -->
-<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+    <!-- Stats.js Library -->
+    <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
 
-<!-- Initialize Particles.js -->
-<script>
-  particlesJS("particles-js", {
-    particles: {
-      number: {
-        value: 400,
-        density: {
-          enable: true,
-          value_area: 800,
-        },
-      },
-      color: { value: "#fff" },
-      shape: {
-        type: "circle",
-        stroke: { width: 0, color: "#9b9cd6" },
-        polygon: { nb_sides: 5 },
-        image: {
-          src: "img/github.svg",
-          width: 100,
-          height: 100,
-        },
-      },
-      opacity: {
-        value: 0.5,
-        random: true,
-        anim: {
-          enable: false,
-          speed: 1,
-          opacity_min: 0.1,
-          sync: false,
-        },
-      },
-      size: {
-        value: 5,
-        random: true,
-        anim: {
-          enable: false,
-          speed: 40,
-          size_min: 0.1,
-          sync: false,
-        },
-      },
-      line_linked: {
-        enable: false,
-        distance: 500,
-        color: "#ffffff",
-        opacity: 0.4,
-        width: 2,
-      },
-      move: {
-        enable: true,
-        speed: 1,
-        direction: "bottom",
-        random: false,
-        straight: false,
-        out_mode: "out",
-        bounce: false,
-        attract: {
-          enable: false,
-          rotateX: 600,
-          rotateY: 1200,
-        },
-      },
-    },
-    interactivity: {
-      detect_on: "canvas",
-      events: {
-        onhover: {
-          enable: false,
-          mode: "grab",
-        },
-        onclick: {
-          enable: false,
-          mode: "repulse",
-        },
-        resize: true,
-      },
-      modes: {
-        grab: {
-          distance: 200,
-          line_linked: {
-            opacity: 0.5,
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 400,
+            density: {
+              enable: true,
+              value_area: 800
+            }
           },
+          color: { value: "#fff" },
+          shape: {
+            type: "circle",
+            stroke: { width: 0, color: "#9b9cd6" },
+            polygon: { nb_sides: 5 },
+            image: { src: "img/github.svg", width: 100, height: 100 }
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+              enable: false,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false
+            }
+          },
+          size: {
+            value: 5,
+            random: true,
+            anim: {
+              enable: false,
+              speed: 40,
+              size_min: 0.1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: false,
+            distance: 500,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 2
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "bottom",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
         },
-        bubble: {
-          distance: 400,
-          size: 4,
-          duration: 0.3,
-          opacity: 1,
-          speed: 3,
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: false, mode: "grab" },
+            onclick: { enable: false, mode: "repulse" },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 200, line_linked: { opacity: 0.5 } },
+            bubble: { distance: 400, size: 4, duration: 0.3, opacity: 1, speed: 3 },
+            repulse: { distance: 200, duration: 0.4 },
+            push: { particles_nb: 4 },
+            remove: { particles_nb: 2 }
+          }
         },
-        repulse: {
-          distance: 200,
-          duration: 0.4,
-        },
-        push: {
-          particles_nb: 4,
-        },
-        remove: {
-          particles_nb: 2,
-        },
-      },
-    },
-    retina_detect: true,
-  });
-
-  /* var count_particles, stats, update;
-  stats = new Stats();
-  stats.setMode(0);
-  stats.domElement.style.position = "absolute";
-  stats.domElement.style.left = "0px";
-  stats.domElement.style.top = "0px";
-  document.body.appendChild(stats.domElement);
-
-  count_particles = document.querySelector(".js-count-particles");
-  update = function () {
-    stats.begin();
-    stats.end();
-    if (window.pJSDom && window.pJSDom[0].pJS.particles) {
-      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-    }
-    requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update); */
-</script>
-<script src="scramble.js"></script>
-<script src="heroCircle.js"></script>
-
+        retina_detect: true
+      });
+    </script>
+    <script src="scramble.js"></script>
+    <script src="heroCircle.js"></script>
   </body>
 </html>
