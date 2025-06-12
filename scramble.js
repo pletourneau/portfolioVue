@@ -62,7 +62,7 @@ const words = [
   "Web Designer",
   "UX/UI Specialist",
   "All Around Nerd",
-  "Accessibility Advocate",
+  "Web Accessibility Advocate",
   "Google Analytics",
 ];
 const el = document.querySelector(".scramble-text");
