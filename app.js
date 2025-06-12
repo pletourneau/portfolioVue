@@ -78,6 +78,11 @@ createApp({
               event:
                 "Testing. Render server is unreliable. Plan to add a database.",
             },
+            {
+              date: "June 2025",
+              event:
+                "Still playing weekly. Calling it user testing for now instead of procrastination.",
+            },
           ],
         },
         {
@@ -99,6 +104,21 @@ createApp({
         {
           title: "Website Performance Optimization for GIVE",
           image: "assets/images/GIVE.jpg",
+          shortDescription: "Reduced load times and enhanced user engagement.",
+          structure: "WordPress with custom JavaScript optimizations",
+          longDescription: `
+            <p><strong>Situation:</strong> GIVE International Volunteers' WordPress site was loading slowly, averaging over 5s/page. This hurt user engagement, particularly on mobile.</p>
+            <p><strong>Task:</strong> Identify and implement strategies to reduce load time and improve performance metrics.</p>
+            <p><strong>Action:</strong> Used Google Lighthouse & GA4 for audits, optimized video file sizes with custom JavaScript loading deferral, and focused on mobile performance enhancements.</p>
+            <p><strong>Result:</strong> Load times dropped under 2s, page views increased by 25%, user engagement up 20%, and mobile bounce rates down 15%.</p>
+          `,
+          previewImages: ["assets/images/GIVE.jpg"],
+          currentImageIndex: 0,
+          open: false,
+        },
+        {
+          title: "Bibliocommons Online/In-person Events Hack",
+          image: "assets/images/BC.jpg",
           shortDescription: "Reduced load times and enhanced user engagement.",
           structure: "WordPress with custom JavaScript optimizations",
           longDescription: `
