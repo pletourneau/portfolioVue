@@ -117,7 +117,7 @@ createApp({
           open: false,
         },
         {
-          title: "Bibliocommons Online/In-person Events Hack",
+          title: "BiblioCommons Online/In-person Events Hack",
           image: "assets/images/BC.jpg",
           shortDescription:
             "Easy solution to feature 'in-person' BiblioCommons events in modules",
