@@ -119,15 +119,15 @@ createApp({
         {
           title: "Bibliocommons Online/In-person Events Hack",
           image: "assets/images/BC.jpg",
-          shortDescription: "Reduced load times and enhanced user engagement.",
-          structure: "WordPress with custom JavaScript optimizations",
+          shortDescription:
+            "Easy solution to feature 'in-person' BiblioCommons events in modules",
           longDescription: `
-            <p><strong>Situation:</strong> GIVE International Volunteers' WordPress site was loading slowly, averaging over 5s/page. This hurt user engagement, particularly on mobile.</p>
-            <p><strong>Task:</strong> Identify and implement strategies to reduce load time and improve performance metrics.</p>
-            <p><strong>Action:</strong> Used Google Lighthouse & GA4 for audits, optimized video file sizes with custom JavaScript loading deferral, and focused on mobile performance enhancements.</p>
-            <p><strong>Result:</strong> Load times dropped under 2s, page views increased by 25%, user engagement up 20%, and mobile bounce rates down 15%.</p>
+            <p>When featuring events lists on a BiblioCommons it is easy to make a list of online only events. Biblio made a checkbox for that! What if I want to feature only 'in-person' events though? There is no check box for this, so if I copy/paste a url into one of their modules my options are: display all events, or display online events.</p>
+            <p>In coding, an exclamation point is called a 'bang operator'. If placed before a statement, it negates it. So '!coolBro' translates to 'notCoolBro'.</p>
+            <p><strong>Hack:</strong> To get an events module to display only 'in-person' events, start by selecting any other options for the event (location, audience, event type, etc) and also select 'online events'. Copy and paste the URL in the module, but make one small addition. At the end of the URL should be 'locations=BC_VIRTUAL'. This is where you add the bang operator so it will now read 'locations=!BC_VIRTUAL'. Now your event feed shows only in person events.</p>
+            <p><strong>Huzzah!</strong></p>
           `,
-          previewImages: ["assets/images/GIVE.jpg"],
+          previewImages: ["assets/images/BC.jpg"],
           currentImageIndex: 0,
           open: false,
         },
