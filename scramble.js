@@ -60,10 +60,9 @@ class TextScramble {
 const words = [
   "Front End Developer",
   "Web Designer",
-  "UX Generalist",
+  "UX/UI Specialist",
   "All Around Nerd",
-  "CRM Developer",
-  "SEO and SEM Strategist",
+  "Accessibility Advocate",
 ];
 const el = document.querySelector(".scramble-text");
 const fx = new TextScramble(el);
