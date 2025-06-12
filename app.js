@@ -121,6 +121,7 @@ createApp({
           image: "assets/images/BC.jpg",
           shortDescription:
             "Easy solution to feature 'in-person' BiblioCommons events in modules",
+          structure: "Quick events module hack in BiblioCommons",
           longDescription: `
             <p>When featuring an events list on BiblioCommons it is easy to make a list of online only events. Biblio made a checkbox for that! What if I want to feature only 'in-person' events though? There is no check box for this, so if I copy/paste a url into one of their modules my options are: display all events, or display online events.</p>
             <p>In coding, an exclamation point is called a 'bang operator'. If placed before a statement, it negates it. So '!coolBro' translates to 'notCoolBro'.</p>
