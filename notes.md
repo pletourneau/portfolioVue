@@ -31,3 +31,5 @@ Hex: #CC5500
 RGB: rgb(204, 85, 0)
 
 Tailwind: bg-[#CC5500] text-[#CC5500] border-[#CC5500]
+
+Slate Gray: #757270
