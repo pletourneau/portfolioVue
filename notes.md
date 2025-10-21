@@ -1,5 +1,5 @@
-1. Mustard Yellow
-   Hex: #D4A017
+#1. Mustard Yellow
+Hex: #D4A017
 
 RGB: rgb(212, 160, 23)
 
